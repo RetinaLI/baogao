@@ -1,0 +1,71 @@
+.top-nav {
+  position: relative;
+  width: 100%;
+  background-color: #eee;
+  background-size: cover;
+  img.bg {
+    display: block;
+    max-width: 100%;
+  }
+
+  .logo {
+    position: absolute;
+    top: .15rem;
+    left: .15rem;
+    width: .6rem;
+    img {
+      display: block;
+      max-width: 100%;
+    }
+  }
+  .time{
+    position: absolute;
+    top: .16rem;
+    right: .15rem;
+    font-size: .12rem;
+    color: #fff;
+    opacity: .7;
+  }
+  .txt {
+    left: 10%;
+    text-align: left;
+    color: #Fff;
+    .platform {
+      font-size: .18rem;
+    }
+    .title {
+      margin-top: .07rem;
+      font-size: .24rem;
+      font-weight: bold;
+      line-height: .24rem;
+      &.service {
+        color: #272727;
+      }
+    }
+    .date {
+      margin-top: .22rem;
+      font-size: .14rem;
+      line-height: .26rem;
+      color: #fff;
+      width: 1.8rem;
+      height: .26rem;
+      padding-left: .15rem;
+      border-radius: .5rem;
+
+    }
+  }
+}
+
+.logistic .date{
+  background: linear-gradient(to right,#208AF8, #395AF3);
+}
+.sell .date{
+  background: linear-gradient(to right,#FFBC53, #FBA034) ;
+}
+.serve .date{
+  background: linear-gradient(to right,#FF864F, #F4641B);
+}
+.quality .date,.product .date {
+  background: linear-gradient(to right,#17D1B3, #30BFAF);
+}
+

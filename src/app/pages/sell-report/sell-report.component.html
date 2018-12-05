@@ -1,0 +1,169 @@
+<div class="page-body">
+  <app-top-nav theme="sell" [bannerInfo]="bannerInfo"></app-top-nav>
+  <div class="main">
+    <app-section class="first" theme="h1" title="按省份统计车辆实销情况" order-number="01">
+      <div class="car-sell box">
+        <app-map [mapData]="mapDataSell" [name]="'sell'"></app-map>
+        <div class="map-visual theme1">
+          <p class="visual"></p>
+          <p class="tip"><span>销量高</span><span>销量低</span></p>
+        </div>
+
+        <div class="sell-top-province">
+          <h6>车辆实销省份TOP10</h6>
+          <p class="line"></p>
+          <div class="box">
+            <div *ngFor="let v of mapDataSell.slice(0, 10); let i = index">
+              <span class="order">{{i + 1}}</span>
+              <span class="province">{{v.name}}</span>
+              <span class="num">{{v.value}}</span>
+            </div>
+          </div>
+        </div>
+        <div class="detail">
+          车联网判断实销总量为<span class="bold">{{parts.sell.detail.total}}辆</span>，其中实销最多的省份是<span class="bold">{{parts.sell.detail.firstProvince.name}}省</span>，实销<span class="bold">{{parts.sell.detail.firstProvince.value}}辆</span>
+        </div>
+      </div>
+    </app-section>
+    <app-section theme="h2" title="按{{ reportData?.typeLabel }}统计实销省份TOP3">
+      <div class="brands-sell">
+        <table class="table">
+          <tr>
+            <td>{{ reportData?.typeLabel }}</td>
+            <td class="font-color-FFBC53 pos-relative">
+              <span>Top1</span>
+              <img src="assets/images/icon-top1.png" alt="" class="icon1 icon">
+            </td>
+            <td class="font-color-FFBC53 pos-relative">
+              <span>Top2</span>
+              <img src="assets/images/icon-top2.png" alt="" class="icon1 icon">
+            </td>
+            <td class="font-color-FFBC53 pos-relative">
+              <span>top3</span>
+              <img src="assets/images/icon-top3.png" alt="" class="icon1 icon">
+            </td>
+          </tr>
+          <tr *ngFor="let v of brandSellProvinceOrder">
+            <td>{{v.name}}</td>
+            <td>{{v.provinces[0].province}}</td>
+            <td>{{v.provinces[1].province}}</td>
+            <td>{{v.provinces[2].province}}</td>
+          </tr>
+        </table>
+      </div>
+    </app-section>
+    <app-section theme="h1" title="按省份统计车辆实际库存" order-number="02">
+      <div class="repertory">
+        <app-map [mapData]="mapDataRepertory" name="repertory"></app-map>
+        <div class="map-visual theme2">
+          <p class="visual"></p>
+          <p class="tip"><span>库存高</span><span>库存低</span></p>
+        </div>
+        <div class="repertory-province">
+          <h6>车辆实际库存省份TOP10</h6>
+          <p class="line"></p>
+          <div class="box">
+            <div *ngFor="let v of mapDataRepertory.slice(0, 10); let i = index">
+              <span class="order">{{i + 1}}</span>
+              <span class="province">{{v.name}}</span>
+              <span class="num">{{v.value}}</span>
+            </div>
+          </div>
+        </div>
+        <div class="detail">
+          实际库存车辆总数为<span class="bold">{{parts.repertory.detail.total}}辆</span>，其中实际库存最多的省份是<span class="bold">{{parts.repertory.detail.firstProvince.name
+            + parts.repertory.detail.firstProvince.value}}辆</span>，实际库存最少的省份是<span class="bold">{{parts.repertory.detail.lastProvince.name
+            + parts.repertory.detail.lastProvince.value}}辆。</span>
+        </div>
+      </div>
+    </app-section>
+    <app-section theme="h2" title="按{{ reportData?.typeLabel }}车辆实际库存占比">
+      <div class="brand-repertory" *ngIf="parts.repertory.brandRepertoryRatyData.length !== 0">
+        <app-pie-list [data]="parts.repertory.brandRepertoryRatyData" [pieTxt]="'库存占比'"></app-pie-list>
+      </div>
+    </app-section>
+    <app-section theme="h1" title="实销预警汇总" order-number="03">
+      <div class="real-sell">
+        <table>
+          <thead>
+            <tr>
+              <th><span>DMS数据</span></th>
+              <th><span>车联网判定数据</span></th>
+              <th><span>预警比例</span></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <span class="title">未报实销总数</span>
+                <i class="num bold">{{parts.realSell.realSellRepertoryRatyData.sell.real || 0}}</i>
+                <span class="up" *ngIf="1 < 0">
+                  <img src="assets/images/logistic/icon-up.svg" alt="">
+                  <b>+{{parts.realSell.realSellRepertoryRatyData.sell.weekAddTotalNum}}</b>
+                </span>
+              </td>
+              <td>
+                <span  class="title">疑似虚假</span>
+                <i class="num bold">{{parts.realSell.realSellRepertoryRatyData.sell.sham || 0}}</i>
+                <span class="up" *ngIf="1 < 0">
+                  <img src="assets/images/logistic/icon-up.svg" alt="">
+                  <b>+{{parts.realSell.realSellRepertoryRatyData.sell.weekAddActualNum}}</b>
+                </span>
+              </td>
+              <td>
+                <span class="title">虚假实销比例</span>
+                <i class="num bold">{{(parts.realSell.realSellRepertoryRatyData.sell.raty || 0) * 100 | number:'1.0-1'}}%</i>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <span class="title">报实销总数</span>
+                <i class="num bold">{{parts.realSell.realSellRepertoryRatyData.repertory.real || 0}}</i>
+                <span class="up" *ngIf="1 < 0">
+                  <img src="assets/images/logistic/icon-up.svg" alt="">
+                  <b>+{{parts.realSell.realSellRepertoryRatyData.repertory.weekAddTotalNum}}</b>
+                </span>
+              </td>
+              <td>
+                <span class="title">疑似虚假</span>
+                <i class="num bold">{{parts.realSell.realSellRepertoryRatyData.repertory.sham || 0}}</i>
+                <span class="up" *ngIf="1 < 0">
+                  <img src="assets/images/logistic/icon-up.svg" alt="">
+                  <b>+{{parts.realSell.realSellRepertoryRatyData.repertory.weekAddActualNum}}</b>
+                </span>
+              </td>
+              <td>
+                <span class="title">虚假库存比例</span>
+                <i class="num bold">{{(parts.realSell.realSellRepertoryRatyData.repertory.raty || 0) * 100 |  number:'1.0-1'}}%</i>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </app-section>
+    <app-section theme="h2" title="按{{ reportData?.typeLabel }}统计虚假实销和虚假库存">
+      <div class="platform-sell">
+        <div class="charts">
+          <p class="legend">
+            <span class="icon icon-blue">疑似虚假实销</span>
+            <span class="icon icon-yellow">疑似虚假库存</span>
+          </p>
+          <div *ngFor="let v of parts.realSell.platformRealSell">
+            <div *ngIf="v" class="chart-item flex">
+              <h6 class="">{{v.name}}</h6>
+              <div class="lines">
+                <div class="line-blue" [style.width]="(v.saleRaty*100)+'%'">
+                  <span>{{(v.saleRaty || 0) * 100 |  number:'1.0-1'}}%</span>
+                </div>
+                <div class="line-yellow" [style.width]="(v.repertoryRaty)*100 + '%'">
+                  <span>{{(v.repertoryRaty || 0) * 100 |  number:'1.0-1'}}%</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </app-section>
+  </div>
+  <app-logo-bottom></app-logo-bottom>
+</div>

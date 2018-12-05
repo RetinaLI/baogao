@@ -1,0 +1,27 @@
+.img-text-sheets ul {
+  li:nth-child(2n+1):nth-last-child(-n+2),
+  li:nth-child(2n+1):nth-last-child(-n+2)~li {
+    margin-bottom: 0;
+  }
+  li {
+    float: left;
+    width: 50%;
+    margin-bottom: .4rem;
+    img {
+      margin-right: .16rem;
+      width: .32rem;
+      height: .32rem;
+    }
+    .sheet-right {
+      display: inline-block;
+      .title {
+        color: #666;
+        font-size: .12rem;
+      }
+      span {
+        color: #4475FD;
+        font-size: .16rem;
+      }
+    }
+  }
+}

@@ -1,0 +1,30 @@
+.navs {
+  padding: 30px;
+  a {
+    text-decoration: none;
+    padding: 10px 15px;
+    margin: 15px;
+    color: #4475FD;
+    border: 1px solid #4475FD;
+  }
+}
+div {
+  margin: 20px 20px;
+}
+
+h1 {
+  margin: 20px 0 8px;
+}
+
+ul {
+  margin-left: 20px;
+  li {
+    margin-bottom: 4px;
+    a{
+      color: #4475FD;
+    }
+  }
+  li:nth-child(2) {
+    margin-bottom: 12px;
+  }
+}

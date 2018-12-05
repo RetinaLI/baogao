@@ -1,0 +1,328 @@
+.main {
+  position: relative;
+  z-index: 9;
+  margin-top: -.35rem;
+}
+ .car-sell {
+  margin-top: -0.25rem;
+  position: relative;
+  .sell-top-province {
+    h6 {
+      margin-bottom: .05rem;
+      font-size: .14rem;
+      color: #4475FD;
+      text-align:center;
+      font-weight: bold;
+    }
+    p.line{
+      margin: .17rem auto 0;
+      width: .32rem;
+      height: .02rem;
+      background-color: #DAE3FF;
+    }
+    .box{
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      height: 1.65rem;
+      flex-wrap: wrap;
+      margin-top: .2rem;
+      div {
+        margin-bottom: .1rem;
+        display: inline-block;
+        width: 50%;
+        span {
+          color: #333;
+          font-size: 12px;
+          &.order {
+            color: #FFBC53;
+            font-weight: bold;
+            display: inline-block;
+            width: .1rem;
+            text-align: right;
+          }
+          &.province {
+            margin: 0 .35rem 0 .1rem;
+            color: #333;
+          }
+          &.num {
+            color: #4475FD;
+          }
+        }
+      }
+    }
+  }
+  .detail {
+    margin-top: .1rem;
+  }
+}
+.brands-sell {
+  .table {
+    margin: auto;
+    border-collapse:collapse;
+    outline: 1px solid #eee;
+    tr:nth-child(odd) {
+      background-color: #F7F7F8;
+    }
+    td {
+      width: .79rem;
+      height: .4rem;
+      font-size: .12rem;
+      color: #666;
+      &:first-child {
+        max-width: 100px;
+        color: #333;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      &.pos-relative {
+        position: relative;
+      }
+      span {
+        font-size: .12rem;
+        color: #FFBC53;
+      }
+    }
+  }
+  .icon {
+    position: absolute;
+    top: -.13rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: .21rem;
+  }
+}
+.repertory {
+  position: relative;
+  .repertory-province {
+
+    h6 {
+      margin-bottom: .05rem;
+      font-size: .14rem;
+      color: #4475FD;
+      text-align:center;
+      font-weight: bold;
+    }
+    p.line{
+      margin: .17rem auto 0;
+      width: .32rem;
+      height: .02rem;
+      background-color: #DAE3FF;
+    }
+    .box{
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      height: 1.65rem;
+      flex-wrap: wrap;
+      margin-top: .2rem;
+      div {
+        margin-bottom: .1rem;
+        display: inline-block;
+        width: 50%;
+        span {
+          color: #333;
+          font-size: 12px;
+          &.order {
+            color: #FFBC53;
+            font-weight: bold;
+            display: inline-block;
+            width: .1rem;
+            text-align: right;
+          }
+          &.province {
+            margin: 0 .35rem 0 .1rem;
+            color: #333;
+          }
+          &.num {
+            color: #4475FD;
+          }
+        }
+      }
+    }
+  }
+  .detail {
+    margin-top: .1rem;
+  }
+}
+.brand-repertory {
+  .title-blue {
+    padding-bottom: 0;
+  }
+  .chart-box {
+    #brandRepertoryChart {
+      width: 45%;
+      height: 2rem;
+    }
+    .legend {
+      width: 55%;
+      tr {
+        height: .4rem;
+        line-height: .4rem;
+        font-size: .14rem;
+        color: #666;
+        .icon {
+          display: inline-block;
+          width: .06rem;
+          height: .06rem;
+          border-radius: 50%;
+          background-color: #4475FD;
+        }
+        .raty {
+          color: #4475FD;
+        }
+      }
+    }
+  }
+}
+
+.real-sell {
+  padding-bottom: .1rem;
+  table {
+    margin-top: 0rem;
+    width: 100%;
+    text-align: center;
+    tr {
+      height: .7rem;
+      &:last-child {
+        height: .8rem;
+      }
+      th {
+        span {
+          padding: .05rem .1rem;
+          font-size: .12rem;
+          background-color: #FFF2DD;
+          border-radius: .13rem;
+        }
+      }
+      td {
+        .title {
+          display: block;
+          font-size: .12rem;
+          color: #666;
+        }
+        .num {
+          margin-top: .05rem;
+          font-size: .18rem;
+          color: #4475FD;
+        }
+        .up {
+          display: block;
+          b {
+            font-weight: normal;
+            font-size: .1rem;
+            background-color: #ffbc53;
+            padding: .03rem .05rem;
+            color: #333;
+            margin-left: .04rem;
+            line-height: .16rem;
+            border-radius: .13rem;
+          }
+        }
+      }
+    }
+  }
+}
+.platform-sell {
+  .title-blue {
+    padding-bottom: .1rem;
+  }
+  .legend {
+    margin-bottom: .15rem;
+    text-align: right;
+    span {
+      margin-right: .2rem;
+      position: relative;
+      font-size: .1rem;
+      color: #aaa;
+      &::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        left: -.08rem;
+        width: 4px;
+        height: 4px;
+        border-radius: 50%;
+        background-color: #4475FD;
+      }
+      &.icon-yellow::before {
+        background-color: #FFBC53;
+      }
+    }
+  }
+  .chart-item {
+    height: .5rem;
+    justify-content: flex-start;
+    h6 {
+      width: .9rem;
+      // padding-left: .35rem;
+      line-height: .4rem;
+      color: #333;
+      font-size: .12rem;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .lines {
+      flex: 1;
+      padding-right: .3rem;
+      &>div {
+        margin-top: .11rem;
+        position: relative;
+        // width: 2rem;
+        height: .04rem;
+        border-radius: 3px;
+        text-align: right;
+        &.line-blue {
+          color: #4475FD;
+          background-color: #4475FD;
+        }
+        &.line-yellow {
+          color: #FFBC53;
+          background-color: #FFBC53;
+        }
+        span {
+          position: absolute;
+          top: -.05rem;
+          right: -.38rem;
+          padding-left: .05rem;
+          font-size: .12rem;
+        }
+      }
+    }
+  }
+}
+
+// 地图的映射控件
+.map-visual {
+  position: absolute;
+  top: 2.25rem;
+  left: .0;
+  z-index: 999;
+  .visual {
+    width: 1.27rem;
+    height: .06rem;
+    background:linear-gradient(90deg,rgba(135,166,254,1) 0%,rgba(237,242,255,1) 100%);
+  }
+  .tip {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    span {
+      font-size: .12rem;
+      color: #aaa;
+    }
+  }
+  &.theme2 {
+    bottom: 1.1rem;
+    .visual {
+      background:linear-gradient(90deg,#23C184 0%,#A0EBCE 100%);
+    }
+  }
+}
+
+.bold{
+  font-weight: bold;
+}

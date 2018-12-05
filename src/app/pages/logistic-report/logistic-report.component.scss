@@ -1,0 +1,31 @@
+.trans-resource{
+  margin-top: -0.25rem;
+}
+
+
+.pad-top{
+  margin: 0 .15rem .15rem;
+  padding: .15rem;
+  padding-top: .25rem;
+  position: relative;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0px 2px 8px 0px rgba(73, 95, 155, 0.1);
+}
+
+.blue-bold{
+  font-weight: bold;
+}
+
+.tag, .name{
+  color: #333;
+}
+.mt-3{
+  margin-top: .4rem;
+  margin-bottom: .38rem;
+}
+.mb-2{
+  ::ng-deep .sort-content{
+    margin-bottom: .22rem;
+  }
+}
