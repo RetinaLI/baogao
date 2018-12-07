@@ -8,7 +8,10 @@ import NumberFormat from '../../lib/number-format';
   styleUrls: ['./account-if-add.component.scss']
 })
 export class AccountIfAddComponent implements OnInit {
-  data: IAccountIfAddData[] = [];
+  data: IAccountIfAddData[] = [{
+    number: [0, 0],
+    name: ''
+  }];
   className: string;
   onlyOne: boolean;
 
@@ -23,6 +26,7 @@ export class AccountIfAddComponent implements OnInit {
   @Input() showNum: boolean = false;
 
   @Input("data") set _data(_s: IAccountIfAddData[]){
+
     if(!_s) return;
     _s.forEach( (val) => {
       if ( typeof(val.number) == 'number' ) {

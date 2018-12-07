@@ -1,5 +1,5 @@
 export interface IAccountIfAddData{
   name: string,
-  number: number[],
+  number: any,
   addValue?: string
 };

@@ -97,13 +97,13 @@ export class ProductComponent implements OnInit {
     this.pageTitle.setTitle(title);
     let titleList = [
       {
-        title: '产品总数',
+        title: '产品总数(个)',
         key: 'productNum'
       }, {
-        title: '开通企业总数',
+        title: '开通企业总数(个)',
         key: 'companyNum'
       }, {
-        title: '账号总数',
+        title: '账号总数(个)',
         key: 'userNum'
       }];
     this.accountIfAdd = titleList.map((ele, i) => {

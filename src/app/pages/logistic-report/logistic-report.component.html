@@ -30,12 +30,12 @@
       </span>
       <span *ngIf="startRateM == 1 || startRateM == -1" class=" blue-bold">{{addData.beginRateAdd}}%</span>;
       <span class="name">及时送达率为</span><span class=" blue-bold">{{addData.ontimeEndRate}}%</span>,
-      <span class="name">环比
-        <span *ngIf="endRateM == 1" class=" blue-bold">上涨</span>
+      <span class="name">
+        环比<span *ngIf="endRateM == 1" class=" blue-bold">上涨</span>
         <span *ngIf="endRateM == -1" class=" blue-bold">下降</span>
         <span *ngIf="endRateM == 0" class=" blue-bold">持平</span>
       </span>
-      <span *ngIf="endRateM == 1 || endRateM == -1" class=" blue-bold">{{addData.endRateAdd}}%</span>.
+      <span *ngIf="endRateM == 1 || endRateM == -1" class=" blue-bold">{{addData.endRateAdd}}%</span>。
     </div>
   </app-section>
 

@@ -23,7 +23,7 @@ export class LogisticReportComponent implements OnInit {
     platform: '福田车联网平台',
     currentTime: ''
   };
-  accountIfAddData: IAccountIfAddData[];
+  accountIfAddData: IAccountIfAddData[] = [];
 
   totalYundanM: Number;
   startRateM: Number;
@@ -111,6 +111,7 @@ export class LogisticReportComponent implements OnInit {
     } else {
       orgGradeTop = qe.orgGradeTop;
     }
+    let arrs = [];
     orgGradeTop.forEach((val) =>{
       let placeHolder = {
         title: '',
@@ -118,8 +119,9 @@ export class LogisticReportComponent implements OnInit {
       };
       placeHolder.title = val.orgName;
       placeHolder.progress = val.orgGrade + '';
-      this.departmentGoodData.push(placeHolder);
+      arrs.push(placeHolder);
     });
+    this.departmentGoodData = arrs;
     let orgGradeLast = [];
     if (qe.orgGradeLast.length > 3) {
       orgGradeLast = qe.orgGradeLast.slice(0,3);
@@ -205,6 +207,7 @@ export class LogisticReportComponent implements OnInit {
     // 运输资源
 
     let transResource = this.reportData.transportResources;
+    console.log(transResource);
     let arr = new Array(6);
     /* todo 添加else */
     for ( let k in transResource) {
@@ -239,6 +242,7 @@ export class LogisticReportComponent implements OnInit {
       }
     };
     this.accountIfAddData = arr;
+    // console.log(this.accountIfAddData);
     this.accountIfAddData.forEach( (val) => {
       let newAdd = val.number[1];
       let arr = [];
@@ -248,7 +252,7 @@ export class LogisticReportComponent implements OnInit {
         this.plusData.push(arr);
       }
     });
-    console.log(this.accountIfAddData);
+    // console.log(this.plusData);
 
     // 运输概况
     this.addData.total = this.reportData.transportSituation.lastWeekTransportSituation.allOrder;

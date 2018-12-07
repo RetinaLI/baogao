@@ -34,7 +34,7 @@ export class ProgressComponent implements OnInit {
 
   @Input('data') set _data(data: IProgressInterface[]) {
     this.data = data || [];
-    if (this.data) {
+    if (this.data.length > 0) {
       this.setTitleWidth = this.getTitleWidth(this.data);
       if (this.sort) {
         this.data = this.sorts(this.data);
@@ -94,7 +94,8 @@ export class ProgressComponent implements OnInit {
       data.map(ele => {
         long.push(ele.title.length);
       });
-      let maxLen = Math.max.apply(Math, long);
+      console.log(long);
+      let maxLen = Math.max(...long);
       return maxLen > 4 ? maxLen * 14 / 100 + 'rem' : '.61rem';
     }
   }
