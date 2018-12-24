@@ -142,6 +142,7 @@ export class SellReportComponent implements OnInit {
     this.parts.repertory.detail.firstProvince = arr[0];
     this.parts.repertory.detail.lastProvince = arr[arr.length - 1];
     this.mapDataRepertory = arr;
+
     // chart data
     let brandOrder2 = ['欧曼', '欧马可', '奥铃', '瑞沃'];
     let covertData = this.convertArrJsonName(stockRankJson.mapList, 'brandOrType');

@@ -63,13 +63,13 @@ export class ServeComponent implements OnInit {
     let summaryData = [];
     summaryData.push({
       name: '在站总次数(次)',
-      number: this.reportData.optionWeekInboundInfo.totalJson.inFenceCount
+      numberVal: this.reportData.optionWeekInboundInfo.totalJson.inFenceCount
     },{
       name: '涉及车辆数(辆)',
-      number: this.reportData.optionWeekInboundInfo.totalJson.vehicleCount
+      numberVal: this.reportData.optionWeekInboundInfo.totalJson.vehicleCount
     },{
       name: '平均在站时长(h)',
-      number: this.reportData.optionWeekInboundInfo.totalJson.avgInFenceTime
+      numberVal: this.reportData.optionWeekInboundInfo.totalJson.avgInFenceTime
     });
     this.summaryData = summaryData;
 

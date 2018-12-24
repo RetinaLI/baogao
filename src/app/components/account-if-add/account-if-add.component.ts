@@ -9,16 +9,17 @@ import NumberFormat from '../../lib/number-format';
 })
 export class AccountIfAddComponent implements OnInit {
   data: IAccountIfAddData[] = [{
-    number: [0, 0],
+    sourceVal: [0, 0],
+    numberVal: [0, 0],
     name: ''
   }];
   className: string;
-  onlyOne: boolean;
+  onlyOne: boolean = false;
 
   /**
    * data: [{
    *  name: string,
-   *  number: number[], 12 | [100, 12] 12表示本周新增的个数
+   *  numberVal: number[], 12 | [100, 12] 12表示本周新增的个数
    * }]
    * showNum?: false| true
    */
@@ -29,24 +30,25 @@ export class AccountIfAddComponent implements OnInit {
 
     if(!_s) return;
     _s.forEach( (val) => {
-      if ( typeof(val.number) == 'number' ) {
-        let result = NumberFormat.render(val.number as number);
+      val.sourceVal = Array.isArray(val.numberVal) ? val.numberVal.map(e => e) : val.numberVal;
+      if ( typeof(val.numberVal) === 'number' ) {
+        let result = NumberFormat.render(val.numberVal as number);
         this.onlyOne = true;
         this.showNum = false;
 
-        val.number = [result.value];
+        val.numberVal = [result.value];
         val.name = val.name.replace(/(\(|（)/g, '$1' + result.unit);
 
       } else {
         this.onlyOne = false;
-        let newAdd = val.number[1];
+        let newAdd = val.numberVal[1];
         if (newAdd > 0){
           val.addValue = "+" + newAdd;
         } else if (newAdd == 0) {
           val.addValue = '';
         }
-        let result = NumberFormat.render(val.number[0] as number);
-        val.number[0] = result.value;
+        let result = NumberFormat.render(val.numberVal[0] as number);
+        val.numberVal[0] = result.value;
         val.name = val.name.replace(/(\(|（)/g, '(' + result.unit);
       }
     })
@@ -59,7 +61,6 @@ export class AccountIfAddComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log(this.data);
   }
 
 }

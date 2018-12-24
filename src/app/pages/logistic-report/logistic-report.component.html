@@ -4,8 +4,8 @@
     <app-account-if-add [data] = "accountIfAddData" [showNum]="true" ></app-account-if-add>
     <div class="detail">
       <span *ngFor="let item of plusData; let i = index">
-        <span class="name tag">新增{{item[0] }}</span>
-        <span class="val blue-bold">{{item[1]}}</span>
+        <span class="name tag test1">新增{{item[0] }}</span>
+        <span class="val blue-bold test2">{{item[1]}}</span>
         <span class="tag" *ngIf="i !== plusData.length-1">，</span>
         <span class="tag" *ngIf="i === plusData.length-1"></span>
       </span>
@@ -14,14 +14,14 @@
 
   <app-section theme="h1" title="车辆运输概况" order-number="02">
     <app-pie-list [data]="transportConditionData" [pieTxt]="addData.total+ '单'" labelColor="#4475FD"></app-pie-list>
-    <div class="detail">
-      <span class="name">运单总数为</span><span class=" blue-bold">{{addData.total}}单</span>，
-      <span class="name">
+    <div class="detail cars-transport">
+      <span class="name">运单总数为</span><span class="total blue-bold">{{addData.total}}单</span>，
+      <span class="name total-add">
         环比<span *ngIf="totalYundanM == 1" class=" blue-bold">增加</span>
         <span *ngIf="totalYundanM == -1" class=" blue-bold">减少</span>
         <span *ngIf="totalYundanM == 0" class=" blue-bold">相等</span>
       </span>
-      <span *ngIf="totalYundanM == 1 || totalYundanM == -1" class=" blue-bold">{{addData.totalAddNum}}单</span>，
+      <span *ngIf="totalYundanM == 1 || totalYundanM == -1" class="total-add-num blue-bold">{{addData.totalAddNum}}单</span>，
       <span class="name">及时起运率为</span><span class=" blue-bold">{{addData.ontimeBeginRate}}%</span>,
       <span class="name">
         环比<span *ngIf="startRateM == 1" class=" blue-bold">上涨</span>

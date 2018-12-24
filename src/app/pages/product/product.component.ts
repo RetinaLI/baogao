@@ -24,11 +24,11 @@ export class ProductComponent implements OnInit {
     currentTime: ''
   };
   accountIfAdd: IAccountIfAddData[] = [{
-    number: [0, 0],
+    numberVal: [0, 0],
     name: '',
     addValue: ''
   }, {
-    number: [0, 0],
+    numberVal: [0, 0],
     name: '',
     addValue: ''
   }];
@@ -109,7 +109,7 @@ export class ProductComponent implements OnInit {
     this.accountIfAdd = titleList.map((ele, i) => {
       return {
         name: ele.title,
-        number: [
+        numberVal: [
           platformInfoWeek.lastWeekMap[ele.key],
           platformInfoWeek.lastWeekMap[ele.key] - platformInfoWeek.beforeWeekMap[ele.key]
         ]
@@ -267,9 +267,9 @@ export class ProductComponent implements OnInit {
   getDetailIndex(data, bool = false) {
     let index = 2;
     let detail = ['增长', '下降', '持平'];
-    if (data.number[1] > 0) {
+    if (data.numberVal[1] > 0) {
       index = 0;
-    } else if (data.number[1] < 0) {
+    } else if (data.numberVal[1] < 0) {
       index = 1;
     } else {
       if (bool) {
@@ -280,7 +280,7 @@ export class ProductComponent implements OnInit {
     }
     return {
       text: detail[index],
-      result: Math.abs(data.number[1])
+      result: Math.abs(data.numberVal[1])
     };
   }
 

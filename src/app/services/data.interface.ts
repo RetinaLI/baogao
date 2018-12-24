@@ -5,21 +5,21 @@ import { ISortListInterface } from '../components/sort-list/sort-list.interface'
 export enum ReportTimeRangeType {WEEK = '周', MONTH = '月', YEAR = '年'};
 
 export interface IReportData {
-  title: string,
-  type: 'carType' | 'carBrand',
-  typeLabel: '品牌' | '车型',
-  platform: string,
+  title?: string,
+  type?: 'carType' | 'carBrand',
+  typeLabel?: '品牌' | '车型',
+  platform?: string,
   reportDate?: {
     startDate?: string,
     endDate?: string,
-    currentTime?: string
+    currentTime?: number
   },
   timeRangeType?: ReportTimeRangeType,
   days?: (number | string)[],
   startDate?: string,    // delete later
   endDate?: string,     // delete later
   brandName?: string,
-  currentTime?: string
+  currentTime?: number
 }
 
 /**
@@ -213,25 +213,52 @@ export interface IFaultPercentByLevelAndTypeItem {
   data: number[]
 }
 export interface IFaultCountItem {
+  codecount: number,
+  code: string,
+  source: string,
+  source_name: string,
   name: string,
   description: string,
-  codecount: number
+  spn: string,
+  fmi: string,
+  priority: string,
+  provider: string,
+  suggest: string,
+  supplierCompanyName: string
 }
 export interface IFaultTopOneByTypeItem {
   car_brand_name: string,
+  code: string,
+  fmi: string,
   description: string,
-  name: string,
+  source: string,
+  total: number,
+  provider: string,
+  source_name: string,
   max: number,
-  total: number
+  suggest: string,
+  priority: string,
+  spn: string,
+  name: string,
+  supplierCompanyName: string
 }
 export interface IFaultPercentByTypeItem {
   car_brand_name: string,
   faultcars: number[],
-  percents: number[]
+  times: string[],
+  percents?: number[]
 }
 export interface IFaultRateCountJsonItem {
   name: string,
-  num: number
+  code: string,
+  num: number,
+  mileage: number,
+  work_time: number,
+  location_points: number,
+  can_points: number,
+  charge_power: number,
+  charge_count: number,
+  uncharge_count: number
 }
 export interface IQeReportData extends IReportData {
   faultProfileJson: {
@@ -243,7 +270,7 @@ export interface IQeReportData extends IReportData {
   },
   faultTypeJson: {
     source_name: string,
-    source: number,
+    source: string,
     source_count: number
   }[],
   faultLevelJson: IFaultPercentByLevelAndTypeItem[],
@@ -252,11 +279,11 @@ export interface IQeReportData extends IReportData {
   faultRankJson: IFaultCountItem[],
   faultRatioJson: IFaultTopOneByTypeItem[],
   faultTreatJson: {
-    faultcode: number,
+    faultcode?: number,
     unprocessed: number,
     assigne: number,
     processed: number,
-    pushed: number,
+    pushed?: number,
     totalpushed: number
   }
 }

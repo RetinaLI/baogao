@@ -2,11 +2,13 @@ import { Injectable } from '@angular/core';
 import { AjaxService } from './ajax.service';
 import { ILogisticReportData, ISellReportData, IServeReportData, IQeReportData, IProductData, ReportTimeRangeType, IReportData } from './data.interface';
 
+export type TReportData = IReportData | ILogisticReportData | ISellReportData | IServeReportData | IQeReportData | IProductData;
+
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
-  reportData: IReportData | ILogisticReportData | ISellReportData | IServeReportData | IQeReportData | IProductData;
+  reportData: TReportData;
 
   private apiUrl: string = '';
 
@@ -23,16 +25,11 @@ export class DataService {
     // console.info(this.apiUrl);
   }
 
-  async getReportData(params?: any) {
-    if (!this.apiUrl || this.reportData) return;
-    let result = await this.ajaxService.get(this.apiUrl, params);
+  /**
+   * 报告数据预处理
+   */
+  renderReportData() {
     let days = [];
-
-    if (!result || result.success === false) {
-      return;
-    }
-
-    this.reportData = result as (IReportData | ILogisticReportData | ISellReportData | IServeReportData | IQeReportData | IProductData);
 
     if(this.reportData.reportDate && this.reportData.reportDate.startDate &&  this.reportData.reportDate.endDate) {
       this.reportData.startDate = this.reportData.reportDate.startDate;
@@ -55,6 +52,19 @@ export class DataService {
       days = ['周一', '周二', '周三', '周四', '周五', '周六', '周日'];
     }
     this.reportData.days = days;
+
+  }
+
+  async getReportData(params?: any) {
+    if (!this.apiUrl || this.reportData) return;
+    let result = await this.ajaxService.get(this.apiUrl, params);
+
+    if (!result || result.success === false) {
+      return;
+    }
+
+    this.reportData = result as TReportData;
+    this.renderReportData();
   }
 
   async getChinaJson() {

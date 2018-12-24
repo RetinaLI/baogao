@@ -33,7 +33,27 @@ export class QeComponent implements OnInit {
     platform: '福田车联网平台',
     currentTime: ''
   };
-  summaryData: IAccountIfAddData[] = [];
+  summaryData: IAccountIfAddData[] = [{
+    valueKey: 'faultcount',
+    name: '故障总数（次）',
+    numberVal: 0
+  }, {
+    valueKey: 'carcount',
+    name: '故障车辆(台)',
+    numberVal: 0
+  }, {
+    valueKey: 'faultpercar',
+    name: '台均故障(次)',
+    numberVal: 0
+  }, {
+    valueKey: 'runmileagecount',
+    name: '行驶总里程(公里)',
+    numberVal: 0
+  }, {
+    valueKey: 'faultpermileage',
+    name: '千公里故障(次)',
+    numberVal: 0
+  }];
   orderByFaultTypeData: IPieData[] = [];
   orderByFaultTypeList: {
     name: string,
@@ -57,21 +77,38 @@ export class QeComponent implements OnInit {
 
   faultCountList: IProgressInterface[] = [];
 
-  faultFixList: IImgTextSheetsData[] = [];
+  faultFixList: IImgTextSheetsData[] = [{
+    valueKey: 'faultcount',
+    title: '推送总数',
+    img: require('../../../assets/images/quality/icon-all@2x.png'),
+    num: 0
+  }, {
+    valueKey: 'unprocessed',
+    title: '待处理',
+    img: require('../../../assets/images/quality/icon-pending@2x.png'),
+    num: 0
+  }, {
+    valueKey: 'assigne',
+    title: '已分发',
+    img: require('../../../assets/images/quality/icon-allot@2x.png'),
+    num: 0
+  }, {
+    valueKey: 'processed',
+    title: '处理完成',
+    img: require('../../../assets/images/quality/icon-done@2x.png'),
+    num: 0
+  }];
 
   faultTopOneByTypeList: IProgressInterface[] = [];
 
   faultPercentByTypeOption: any;
 
-  constructor(private dataService: DataService, private pageTitle: Title) {
+  constructor(public dataService: DataService, private pageTitle: Title) {
     this.pageTitle.setTitle(this.bannerInfo.title);
   }
 
-  async ngOnInit() {
-    await this.dataService.getReportData();
-    this.reportData = this.dataService.reportData as IQeReportData;
+  bindData() {
     let dateFormate = FOTON_GLOBAL.Date.getDateByFormat;
-    if (!this.reportData) return;
 
     this.bannerInfo.endDate = this.reportData.endDate;
     this.bannerInfo.startDate = this.reportData.startDate;
@@ -79,24 +116,11 @@ export class QeComponent implements OnInit {
     this.bannerInfo.currentTime = dateFormate(this.reportData.reportDate.currentTime, 'yyyy.MM.dd HH:mm:ss'),
     this.pageTitle.setTitle(this.bannerInfo.title);
 
-    let summaryData = [];
-    summaryData.push({
-      name: '故障总数（次）',
-      number: [this.reportData.faultProfileJson.faultcount]
-    }, {
-      name: '故障车辆(台)',
-      number: [this.reportData.faultProfileJson.carcount]
-    }, {
-      name: '台均故障(次)',
-      number: [this.reportData.faultProfileJson.faultpercar]
-    }, {
-      name: '行驶总里程(公里)',
-      number: [this.reportData.faultProfileJson.runmileagecount]
-    }, {
-      name: '千公里故障(次)',
-      number: [this.reportData.faultProfileJson.faultpermileage]
+    this.summaryData = this.summaryData.map(dataElem => {
+      return Object.assign(dataElem, {
+        numberVal: this.reportData.faultProfileJson[dataElem.valueKey]
+      });
     });
-    this.summaryData = summaryData;
 
     this.orderByFaultTypeData = this.sortDaultTypeJson(this.reportData.faultTypeJson);
     this.orderByFaultTypeList = this.orderByFaultTypeData.map((item, i) => {
@@ -124,23 +148,10 @@ export class QeComponent implements OnInit {
       };
     });
 
-
-    this.faultFixList.push({
-      title: '推送总数',
-      img: require('../../../assets/images/quality/icon-all@2x.png'),
-      num: this.reportData.faultProfileJson.faultcount
-    }, {
-      title: '待处理',
-      img: require('../../../assets/images/quality/icon-pending@2x.png'),
-      num: this.reportData.faultTreatJson.unprocessed
-    }, {
-      title: '已分发',
-      img: require('../../../assets/images/quality/icon-allot@2x.png'),
-      num: this.reportData.faultTreatJson.assigne
-    }, {
-      title: '处理完成',
-      img: require('../../../assets/images/quality/icon-done@2x.png'),
-      num: this.reportData.faultTreatJson.processed
+    this.faultFixList = this.faultFixList.map((faultItem, i) => {
+      return Object.assign(faultItem, {
+        num: i === 0 ? this.reportData.faultProfileJson[faultItem.valueKey] : this.reportData.faultTreatJson[faultItem.valueKey]
+      })
     });
 
     this.faultTopOneByTypeList = this.reportData.faultRatioJson.reverse().map(item => {
@@ -157,6 +168,14 @@ export class QeComponent implements OnInit {
       };
     });
     this.bindFaultPercentByTypeList();
+
+  }
+
+  async ngOnInit() {
+    await this.dataService.getReportData();
+    this.reportData = this.dataService.reportData as IQeReportData;
+    if (!this.reportData) return;
+    this.bindData();
   }
 
   // 故障类型占比排名

@@ -1,20 +1,20 @@
 <div class="total-info">
-  <div *ngFor="let item of data" class="{{className}}">
+  <div *ngFor="let item of data" class="{{className}}" [attr.data-value]="item.sourceVal">
     <p class="title">{{item.name}}</p>
-    <span [hidden]="!onlyOne" class="only-one">{{item.number }}</span>
-    <span [hidden]="onlyOne" class="not-only-one">{{ item.number[0]}}</span>
+    <span *ngIf="onlyOne" class="only-one">{{item.numberVal}}</span>
+    <span *ngIf="!onlyOne" class="not-only-one">{{item.numberVal[0]}}</span>
     <!-- <span *ngIf="onlyOne">
       <span *ngFor='let a of (item.number| numberFormater)'>{{a}}</span>
     </span>
     <span *ngIf="!onlyOne">
       <span *ngFor='let a of (item.number[0] | numberFormater)'>{{a}}</span>
     </span> -->
-    <div [hidden]="!showNum">
-      <p [hidden]="!item.number[1]" class="marker">
+    <div *ngIf="showNum">
+      <p *ngIf="item.numberVal[1]" class="marker">
         <img src="assets/images/logistic/icon-up.svg" alt="">
-        <span class="add">{{item.addValue }}</span>
+        <span class="add">{{item.addValue}}</span>
       </p>
-      <p *ngIf="item.number[1] == 0 || 0 > item.number[1] " class="noadd">
+      <p *ngIf="item.numberVal[1] == 0 || 0 > item.numberVal[1] " class="noadd">
         <span></span>
       </p>
     </div>

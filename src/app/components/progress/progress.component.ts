@@ -94,7 +94,6 @@ export class ProgressComponent implements OnInit {
       data.map(ele => {
         long.push(ele.title.length);
       });
-      console.log(long);
       let maxLen = Math.max(...long);
       return maxLen > 4 ? maxLen * 14 / 100 + 'rem' : '.61rem';
     }

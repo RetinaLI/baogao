@@ -1,5 +1,6 @@
 export interface IImgTextSheetsData {
   img: string,
   title: string,
-  num: number
+  num: number,
+  [x:string]: any
 }

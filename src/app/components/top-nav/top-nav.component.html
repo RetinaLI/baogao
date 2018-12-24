@@ -3,7 +3,7 @@
   <div class="logo">
     <img src="assets/images/logo.png" alt="">
   </div>
-  <div class="time" *ngIf="bannerInfo.currentTime">报告生成时间:&nbsp;{{bannerInfo?.currentTime}}</div>
+  <div class="time">报告生成时间:&nbsp;{{bannerInfo?.currentTime}}</div>
   <div class="txt vc">
     <h4 class="platform">{{bannerInfo?.platform}}</h4>
     <h3 class="title" [class.service]="theme === 'service'">{{bannerInfo?.title}}</h3>

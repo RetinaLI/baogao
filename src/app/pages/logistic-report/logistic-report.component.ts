@@ -207,44 +207,43 @@ export class LogisticReportComponent implements OnInit {
     // 运输资源
 
     let transResource = this.reportData.transportResources;
-    console.log(transResource);
     let arr = new Array(6);
     /* todo 添加else */
     for ( let k in transResource) {
       let frame = {
         name: '',
-        number: []
+        numberVal: []
       }
       if (k == 'companyBranchNum') {
         frame.name = "分公司(家)";
-        frame.number = transResource[k];
+        frame.numberVal = transResource[k];
         arr[0] = frame;
       } else if (k == 'logDepartmentNum') {
         frame.name = "物流部(个)";
-        frame.number = transResource[k];
+        frame.numberVal = transResource[k];
         arr[1] = frame;
       } else if (k == 'councilsNum') {
         frame.name = "承运商(家)";
-        frame.number = transResource[k];
+        frame.numberVal = transResource[k];
         arr[2] = frame;
       } else if (k == 'driverNum') {
         frame.name = "司机(名)";
-        frame.number = transResource[k];
+        frame.numberVal = transResource[k];
         arr[3] = frame;
       } else if (k == 'transportRouteNum') {
         frame.name = "运输路线(条)";
-        frame.number = transResource[k];
+        frame.numberVal = transResource[k];
         arr[4] = frame;
       } else if (k == 'placepointNum') {
         frame.name = "位置标点(个)";
-        frame.number = transResource[k];
+        frame.numberVal = transResource[k];
         arr[5] = frame;
       }
     };
     this.accountIfAddData = arr;
-    // console.log(this.accountIfAddData);
+    console.log(this.accountIfAddData);
     this.accountIfAddData.forEach( (val) => {
-      let newAdd = val.number[1];
+      let newAdd = val.numberVal[1];
       let arr = [];
       if (newAdd > 0) {
         arr.push(val.name.slice(0,-3));
@@ -252,7 +251,6 @@ export class LogisticReportComponent implements OnInit {
         this.plusData.push(arr);
       }
     });
-    // console.log(this.plusData);
 
     // 运输概况
     this.addData.total = this.reportData.transportSituation.lastWeekTransportSituation.allOrder;
@@ -349,7 +347,7 @@ export class LogisticReportComponent implements OnInit {
       arr1.push(placeHolder);
     })
     this.delayBeginCountData = arr1;
-
+    console.info(this.delayBeginCountData);
     this.noStartShip3Data = ab.delayBeginCouncilsRank.slice(0,5).map( (val) => {
       let placeHolder = {title: '', progress: '', note: 0, errNote: 0 };
       placeHolder.title = val.councilsName;

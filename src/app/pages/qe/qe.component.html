@@ -13,7 +13,7 @@
       </li>
     </ul>
   </app-section>
-  <app-section theme="h2" title="按{{ reportData?.typeLabel }}品牌统计故障占比" *ngIf="reportData?.type === 'carBrand'">
+  <app-section theme="h2" title="按{{ reportData?.typeLabel }}统计故障占比" *ngIf="reportData?.type === 'carBrand'">
     <ul class="fault-percent-by-type-color-list">
       <li *ngFor="let item of faultByBrandColors; trackBy: trackByFaultByBrandColors">
         <i [style.background-color]="item.color"></i>
@@ -32,7 +32,7 @@
     </ul>
   </app-section>
   <app-section theme="h2" title="按{{ reportData?.typeLabel }}统计故障率趋势" *ngIf="reportData?.type === 'carBrand'">
-    <div class="chart-wrapper">
+    <div class="chart-wrapper fault-percent-by-type-chart">
       <app-echart-base [option]="faultPercentByTypeOption"></app-echart-base>
     </div>
   </app-section>
@@ -43,16 +43,16 @@
   <app-section theme="h2" title="按{{ reportData?.typeLabel }}统计比例最高的故障码" order-number="02"  *ngIf="reportData?.type === 'carBrand'">
     <app-progress [data]="faultTopOneByTypeList" [layout]="false" unit="%" [marginBottom]=".3"></app-progress>
   </app-section>
-  <app-section theme="h1" title="故障处理情况" order-number="03">
+  <app-section theme="h1" title="故障处理情况" order-number="03" class="fault-fix-wrapper">
     <app-img-text-sheets [sheetsList]="faultFixList"></app-img-text-sheets>
     <div class="detail">
       车联网已向Seibel推送故障
-      <span>{{reportData?.faultProfileJson.faultcount}}个</span>，
-      其中已经处理完成<span>{{reportData?.faultTreatJson.processed}}个</span>，
-      占比<span>{{(reportData?.faultTreatJson.processed/reportData?.faultProfileJson.faultcount * 100) | number:'1.0-1'}}%</span>，
+      <span>{{reportData?.faultProfileJson.faultcount || 0}}个</span>，
+      其中已经处理完成<span>{{reportData?.faultTreatJson.processed || 0}}个</span>，
+      占比<span>{{(reportData?.faultTreatJson.processed/reportData?.faultProfileJson.faultcount * 100) || 0 | number:'1.0-1'}}%</span>，
       <!-- 已分发<span>{{reportData?.faultTreatJson.assigne}}个</span>，占比<span>{{(reportData?.faultTreatJson.assigne/reportData?.faultProfileJson.faultcount * 100) | number:'1.0-1'}}%</span>， -->
-      待处理<span>{{reportData?.faultTreatJson.unprocessed}}个</span>，
-      占比<span>{{(reportData?.faultTreatJson.unprocessed/reportData?.faultProfileJson.faultcount * 100) | number:'1.0-1'}}%</span>。</div>
+      待处理<span>{{reportData?.faultTreatJson.unprocessed || 0}}个</span>，
+      占比<span>{{(reportData?.faultTreatJson.unprocessed/reportData?.faultProfileJson.faultcount * 100) || 0 | number:'1.0-1'}}%</span>。</div>
   </app-section>
   <app-logo-bottom></app-logo-bottom>
 </div>

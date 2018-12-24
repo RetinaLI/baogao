@@ -114,6 +114,7 @@ export class MapComponent implements OnInit {
     this.option.series[0].markPoint.data = pointData;
     this.option.series[0].data = this.mapData;
     this.chart = echarts.init(document.getElementById(this.name));
+    // console.info(this.option);
     this.chart.setOption(this.option);
   }
 

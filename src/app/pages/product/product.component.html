@@ -4,7 +4,7 @@
     <app-section theme="h1" title="车联网平台概况" order-number="01">
       <app-account-if-add [data]="accountIfAdd" [showNum]="true"></app-account-if-add>
       <div class="detail">
-        产品总数为<span class="bold">{{accountIfAdd[0].number[0]}}个</span>，环比<span class="bold">{{detail.text}}</span>，开通企业总数为<span class="bold">{{accountIfAdd[1].number[0]}}个</span>，环比{{detailCom.text}}<span class="bold">{{detailCom.result}}个</span>
+        产品总数为<span class="bold">{{accountIfAdd[0].numberVal[0]}}个</span>，环比<span class="bold">{{detail.text}}</span>，开通企业总数为<span class="bold">{{accountIfAdd[1].numberVal[0]}}个</span>，环比{{detailCom.text}}<span class="bold">{{detailCom.result}}个</span>
       </div>
     </app-section>
     <app-section theme="h2" title="开通企业排行TOP10">
