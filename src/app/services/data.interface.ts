@@ -25,12 +25,57 @@ export interface IReportData {
 /**
 * 物流数据结构
 */
+export interface IdelayBeginCouncils{
+  councilsName: string,
+  totalNum: number,
+  delayBeginRate: number,
+  delayBeginCount: number
+}
+
+export interface IdelayEndCouncils{
+  councilsName: string,
+  totalNum: number,
+  delayEndRate: number,
+  delayEndCount: number
+}
+
+export interface IabMileageCouncils {
+  councilsName: string,
+  totalNum: number,
+  abMileageRate: number,
+  abMileageCount: number
+}
+
+export interface IdoubtDistCouncils{
+  councilsName: string,
+  totalNum: number,
+  doubtDistRate: number,
+  doubtDistCount: number
+}
+// 1
+export interface IbrandGrade{
+  brandGrade: number,
+  brandName: string
+}
+// 2
+export interface IorgGrade{
+  orgGrade: number,
+  orgName: string
+}
+// 3
+export interface IcouncilsGrade{
+  councilsGrade: number,
+  councilsName: string
+}
+// 4
+export interface IdriverGrade{
+  driverId: number,
+  receiptNum: number,
+  driverGrade: number,
+  driverName: string
+}
+
 export interface ILogisticReportData extends IReportData {
-  transportCondition: IMapData[],
-  noStartShip3: ISortListInterface[],
-  progressData: IProgressInterface[],
-  brandPoor: string[],
-  logisticPoor3: string[],
   transportResources: {
     driverNum: number[],
     logDepartmentNum: number[],
@@ -57,75 +102,23 @@ export interface ILogisticReportData extends IReportData {
   },
   abnormalTransportation: {
     delayBeginCount: any[],
-    delayBeginCouncilsRank: [
-      {
-        councilsName: string,
-        totalNum: number,
-        delayBeginRate: number,
-        delayBeginCount: number
-      }
-    ],
+    delayBeginCouncilsRank: IdelayBeginCouncils[],
     delayEndCount: any[],
-    delayEndCouncilsRank: [
-      {
-        councilsName: string,
-        totalNum: number,
-        delayEndRate: number,
-        delayEndCount: number
-      }
-    ],
+    delayEndCouncilsRank: IdelayEndCouncils[],
     abMileageCount: any[],
-    abMileageCouncilsRank: [
-      {
-        councilsName: string,
-        totalNum: number,
-        abMileageRate: number,
-        abMileageCount: number
-      }
-    ],
+    abMileageCouncilsRank: IabMileageCouncils[],
     doubtDistCount: any[],
-    doubtDistCouncilsRank: [
-      {
-        councilsName: string,
-        totalNum: number,
-        doubtDistRate: number,
-        doubtDistCount: number
-      }
-    ]
+    doubtDistCouncilsRank: IdoubtDistCouncils[]
   },
   transportationQualityEvaluation: {
-    brandGradeTop: [{
-      brandGrade: number,
-      brandName: string
-    }],
-    brandGradeLast: [{
-      brandGrade: number,
-      brandName: string
-    }],
-    orgGradeTop: [{
-      orgGrade: number,
-      orgName: string
-    }],
-    orgGradeLast: [{
-      orgGrade: number,
-      orgName: string
-    }],
-    councilsGradeTop: [{
-      councilsGrade: number,
-      councilsName: string
-    }],
-    councilsGradeLast:[{
-      councilsGrade: number,
-      councilsName: string
-    }],
-    driverGradeTop: [{
-      driverGrade: number,
-      driverName: string
-    }],
-    driverGradeLast: [{
-      driverGrade: number,
-      driverName: string
-    }]
+    brandGradeTop: IbrandGrade[],
+    brandGradeLast: IbrandGrade[],
+    orgGradeTop: IorgGrade[],
+    orgGradeLast: IorgGrade[],
+    councilsGradeTop: IcouncilsGrade[],
+    councilsGradeLast: IcouncilsGrade[],
+    driverGradeTop: IdriverGrade[],
+    driverGradeLast: IdriverGrade[]
   }
 }
 
@@ -244,21 +237,21 @@ export interface IFaultTopOneByTypeItem {
 }
 export interface IFaultPercentByTypeItem {
   car_brand_name: string,
-  faultcars: number[],
+  faultcars: any,
   times: string[],
   percents?: number[]
 }
 export interface IFaultRateCountJsonItem {
   name: string,
-  code: string,
+  code?: string,
   num: number,
-  mileage: number,
-  work_time: number,
-  location_points: number,
-  can_points: number,
-  charge_power: number,
-  charge_count: number,
-  uncharge_count: number
+  mileage?: number,
+  work_time?: number,
+  location_points?: number,
+  can_points?: number,
+  charge_power?: number,
+  charge_count?: number,
+  uncharge_count?: number
 }
 export interface IQeReportData extends IReportData {
   faultProfileJson: {
@@ -292,18 +285,17 @@ export interface IQeReportData extends IReportData {
  * 用户使用大数据周报
  */
 export interface IProductData extends IReportData {
+  subscTemplateName: String,
   platformInfoWeek: {
     beforeWeekMap: any,
     lastWeekMap: any,
     desc: string
   },
   productRankingWeek: {
-    list: [
-      {
-        companyNum: number,
-        productName: string
-      }
-    ],
+    list: {
+      companyNum: number,
+      productName: string
+    }[],
     desc: string
   },
   visitStatisticsFactory: {
@@ -317,72 +309,205 @@ export interface IProductData extends IReportData {
     companyVisitList: any
   },
   functionsUsedByFactory: {
-    functionsUsedList: [
-      {
-        compared: string,
-        count: number,
-        name: string
-      }
-    ]
+    functionsUsedList: {
+      compared: string,
+      count: number,
+      name: string
+    }[]
   },
   functionsUsedByDealer: {
-    functionsUsedList: [
-      {
-        compared: string,
-        count: number,
-        name: string
-      }
-      ]
+    functionsUsedList: {
+      compared: string,
+      count: number,
+      name: string
+    }[]
   },
   visitStatisticsProduct: {
-    productVisitList: [
-      {
-        compared: string,
-        count: number,
-        name: string
-      }
-    ]
+    productVisitList: {
+      compared: string,
+      count: number,
+      name: string
+    }[]
   },
-  listSort: [{
-    title: string,
-    progress: string,
-    lift: string
-  }],
-  dealerList: [{
-    title: string,
-    progress: string,
-    lift: string
-  }],
-  dealerScale: [{
-    value: number,
-    name: string
-  }],
-  parkScale: [{
-    value: number,
-    name: string
-  }],
-  comPieData: [{
-    value: number,
-    title: string,
-    num: number
-  }],
-  dealerPieData: [{
-    value: number,
-    title: string,
-    num: number
-  }],
-  parkList: [{
-    title: string,
-    progress: string,
-    lift: string
-  }],
-  sortTopList: [{
-    title: string,
-    progress: string,
-    lift: string
-  }],
   visitStatisticsWeek: {
     beforeLastWeekVisit: any,
     lastWeekVisit: any
   }
+};
+
+/**
+ * 用户行为大数据周报(车厂端)
+ */
+export interface IUserBehaviorData extends IReportData {
+  subscTemplateName: String,
+  platformInfoWeek: {
+    lastMap: {
+      activeNum: number,
+			newNum: number,
+			allNum: number
+    }
+  },
+  userVisitCount: {
+    userVisitList: {compared: string, count: number, name: string}[]
+  },
+  functionsUsedByFactory: {
+    functionsUsedList: {
+      compared: string,
+      count: number,
+      name: string
+    }[]
+  },
+  visitStatisticsWeek: {
+    beforeLastWeekVisit: any,
+    lastWeekVisit: any,
+    maxDay: string,
+    lastTotal: number,
+    maxCount: number,
+    beforeLastTotal: number
+  },
+  functionsUsedByCompanyId: {
+    functionsUsedList: {compared: string, count: number, name: string}[],
+  }
+};
+
+/**
+ * 车厂端报告
+ */
+export interface IRunInfo {
+  carCount: number,
+  totalMileage: number,
+  totalRunTime: number,
+  runDay: string
+}
+export interface IWorkRate {
+  totalWorkDays: number,
+  carCount: number,
+  runDay: string
+}
+export interface ITerminalData extends IReportData {
+  vehicleHotDistribution: {province: string, carCount: number }[],
+  carRunAvgCount: {
+    runInfoByCarType: {runInfo: IRunInfo[], carTypeName: string}[],
+    runRateByCarType: {workRate: IWorkRate[], carTypeName: string}[]
+  },
+  iovInstallCount: {
+    lastIncreasedNum: number,
+    iovInstallByCarType: {vehicleNum: number, carTypeName: string}[],
+    carTotalNum: number,
+    beforeLastIncreasedNum: number,
+    addRate: number
+  },
+  vehicleRunCount:{
+    averageFuelConsumption: number,
+    averageOilContent: number,
+    averageVelocity: number
+  },
+  vehicleOnlineCount:{
+    avgOnlineRate: number,
+    tswkOnlineCount: number,
+    onlineSummaryByCarType: {onLineRate: number, onLineCount: number, totalCount: number, carTypeName: string}[],
+    totalCarCount: number
+  },
+  vehicleRunCountByCarType: {
+    alarmNum: number,
+    carNum: number,
+    locationNum: number,
+    runTime: number,
+    mileAge: number,
+    canNum: number
+  },
+  carLifecycleCount: {},
+}
+
+/**
+ * 旧报告接口
+ */
+export interface IoldReportData extends IReportData{
+  currentTime: number,
+  carAvgMileageReport: {
+    seriesData: number[],
+    yAxisData: string[]
+  },
+  brandName: string,
+  brands: { code: string, name: string }[],
+  carTypes: { code: string, name: string }[],
+  carOperateAvgReport: {
+    avgUnChargePowerData: { date: string, code: string, numerator: number, denominator: number }[],
+    avgWorkTimeData: { date: string, code: string, numerator: number, denominator: number }[],
+    avgWorkRateData: { date: string, code: string, numerator: number, denominator: number }[],
+    avgMileageData: { date: string, code: string, numerator: number, denominator: number }[]
+  },
+  carLongReport: {
+    seriesData: number[],
+    yAxisData: string[]
+  },
+  carAvgSpeedReport: {
+    seriesData: number[],
+    yAxisData: string[]
+  },
+  carAttendanceReport: {
+    seriesData: number[],
+    yAxisData: string[]
+  },
+  optionCarBrandAddAndRunInfo: {
+    markPointAddData: {xAxis: string, yAxis: number}[],
+    Q3AddData: { onLineRate: number, code: string, iCarNum: number, onLine: number }[],
+    xAxisAddAndRunData: string[],
+    onlineData: { carOnlineNum: number, carOnlineRate: number },
+    seriesAddData: number[]
+  },
+  optionWeek6AddInfo: {
+    section: string[],
+    totalJson: {
+      markPointData: {code: string, value: number}[],
+      carTotalNum: number,
+      addCarNum1: number,
+      addCarNum2: number,
+      addRate: number,
+      xData: string[],
+      sendTime: string
+    }
+  },
+  optionCarBrandRunInfo: {
+    seriesMileAgeData: number[],
+    xAxisRunInfoData: string[],
+    markPointMileageData: { xAxis: string, yAxis: number }[],
+    seriesRunTimeData: number[],
+    markPointRunTimeData: { xAxis: string, yAxis: number }[],
+    totalJson: {
+      chargeCount:number,
+      chargePower: number,
+      unchargeCount: number,
+      LocationNum: number,
+      CanNum: number,
+      AlarmNum: number,
+      carNum: number,
+      runTime: number,
+      mileAge: number
+    },
+    OnlineData: {
+      [x: string]: {
+        code: string,
+        carNum: number,
+        runTime: number,
+        mileAge: number
+      }
+    }[]
+  }
+};
+
+export interface CT_Report {
+  company: {},
+  created: string,
+  id: number,
+  modified: string,
+  modifiedTime: string,
+  name: string,
+  "new": boolean,
+  note: string,
+  path: string,
+  rangeTitle: string,
+  startDate: string,
+  status: number,
+  subscTemplate: {}
 }

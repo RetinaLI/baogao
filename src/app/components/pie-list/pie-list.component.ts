@@ -17,6 +17,9 @@ export class PieListComponent implements OnInit {
 
   @Input('data') set _data(data: IMapData[]) {
     this.data = data || [];
+    if (this.data && this.data.length > 5) {
+      this.boxHeight = (this.data.length * 0.42) + 'rem';
+    }
     this.renderOption();
     this.renderChart();
   }
@@ -29,8 +32,9 @@ export class PieListComponent implements OnInit {
     this.renderChart();
 
   };
-  private colors: string[] = $FIVE_COLORS;
+  private colors: string[] = ['#4475FD', '#3DE3A3', '#FFBC53', '#FFD94F', '#F56C6C', 'yellowgreen', 'purple', 'pink', 'skyblue', 'grey', '#CB3477']
   private pieTxt: string = '库存占比';
+  public boxHeight: string = '2.14rem';
   data: IMapData[] = [];
   private sum: number;
   private pieChartOpt = {
@@ -94,6 +98,7 @@ export class PieListComponent implements OnInit {
     this.renderChart();
   }
   onWindowResize() {
+    if(!this.chart) return;
     this.chart.resize();
   }
 }

@@ -86,6 +86,9 @@
         &.red {
           background: $red;
         }
+        &.blue4F91FF{
+          background: #4F91FF;
+        }
       }
     }
     .progress-sec-all {
@@ -95,9 +98,9 @@
       position: absolute;
       transform: translateY(-50%);
       top: 50%;
-      width: .5rem;
+      width: auto;
       text-align: left;
-      right: -.45rem;
+      right: - .5rem;
       padding-left: .08rem;
     }
     .problem {
@@ -105,6 +108,11 @@
       left: 0;
       top: -.2rem;
       min-width: 120px;
+      display: block;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      width: 99%;
     }
     .blue {
       color: $blue;
@@ -114,6 +122,9 @@
     }
     .red {
       color: $red;
+    }
+    .blue4F91FF{
+      color: #4F91FF;
     }
   }
 }

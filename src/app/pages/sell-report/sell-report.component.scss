@@ -29,11 +29,13 @@
       margin-top: .2rem;
       div {
         margin-bottom: .1rem;
+        text-align: center;
         display: inline-block;
         width: 50%;
         span {
           color: #333;
           font-size: 12px;
+          display: inline-block;
           &.order {
             color: #FFBC53;
             font-weight: bold;
@@ -42,11 +44,15 @@
             text-align: right;
           }
           &.province {
-            margin: 0 .35rem 0 .1rem;
+            margin: 0 .2rem 0 .15rem;
             color: #333;
+            width: .5rem;
+            text-align: left;
           }
           &.num {
             color: #4475FD;
+            width: .5rem;
+            text-align: left;
           }
         }
       }
@@ -70,7 +76,7 @@
       font-size: .12rem;
       color: #666;
       &:first-child {
-        max-width: 100px;
+        max-width: 105px;
         color: #333;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -119,11 +125,13 @@
       margin-top: .2rem;
       div {
         margin-bottom: .1rem;
+        text-align: center;
         display: inline-block;
         width: 50%;
         span {
           color: #333;
           font-size: 12px;
+          display: inline-block;
           &.order {
             color: #FFBC53;
             font-weight: bold;
@@ -132,11 +140,15 @@
             text-align: right;
           }
           &.province {
-            margin: 0 .35rem 0 .1rem;
+            margin: 0 .2rem 0 .15rem;
             color: #333;
+            width: .5rem;
+            text-align: left;
           }
           &.num {
             color: #4475FD;
+            width: .5rem;
+            text-align: left;
           }
         }
       }
@@ -267,7 +279,7 @@
     }
     .lines {
       flex: 1;
-      padding-right: .3rem;
+      padding-right: .45rem;
       &>div {
         margin-top: .11rem;
         position: relative;
@@ -286,7 +298,7 @@
         span {
           position: absolute;
           top: -.05rem;
-          right: -.38rem;
+          right: -.48rem;
           padding-left: .05rem;
           font-size: .12rem;
         }

@@ -1,7 +1,7 @@
 <div class="page-body">
   <app-top-nav theme="sell" [bannerInfo]="bannerInfo"></app-top-nav>
   <div class="main">
-    <app-section class="first" theme="h1" title="按省份统计车辆实销情况" order-number="01">
+    <app-section class="first" theme="h1" moduleTitle="按省份统计车辆实销情况" order-number="01">
       <div class="car-sell box">
         <app-map [mapData]="mapDataSell" [name]="'sell'"></app-map>
         <div class="map-visual theme1">
@@ -12,7 +12,7 @@
         <div class="sell-top-province">
           <h6>车辆实销省份TOP10</h6>
           <p class="line"></p>
-          <div class="box">
+          <div class="box" [style.height] = 'top10Height'>
             <div *ngFor="let v of mapDataSell.slice(0, 10); let i = index">
               <span class="order">{{i + 1}}</span>
               <span class="province">{{v.name}}</span>
@@ -25,7 +25,7 @@
         </div>
       </div>
     </app-section>
-    <app-section theme="h2" title="按{{ reportData?.typeLabel }}统计实销省份TOP3">
+    <app-section theme="h2" moduleTitle="按{{ reportData?.typeLabel }}统计实销省份TOP3">
       <div class="brands-sell">
         <table class="table">
           <tr>
@@ -45,14 +45,12 @@
           </tr>
           <tr *ngFor="let v of brandSellProvinceOrder">
             <td>{{v.name}}</td>
-            <td>{{v.provinces[0].province}}</td>
-            <td>{{v.provinces[1].province}}</td>
-            <td>{{v.provinces[2].province}}</td>
+            <td *ngFor="let i of v.provinces">{{i.province}}</td>
           </tr>
         </table>
       </div>
     </app-section>
-    <app-section theme="h1" title="按省份统计车辆实际库存" order-number="02">
+    <app-section theme="h1" moduleTitle="按省份统计车辆实际库存" order-number="02">
       <div class="repertory">
         <app-map [mapData]="mapDataRepertory" name="repertory"></app-map>
         <div class="map-visual theme2">
@@ -77,12 +75,12 @@
         </div>
       </div>
     </app-section>
-    <app-section theme="h2" title="按{{ reportData?.typeLabel }}车辆实际库存占比">
+    <app-section theme="h2" moduleTitle="按{{ reportData?.typeLabel }}统计实际库存占比">
       <div class="brand-repertory" *ngIf="parts.repertory.brandRepertoryRatyData.length !== 0">
         <app-pie-list [data]="parts.repertory.brandRepertoryRatyData" [pieTxt]="'库存占比'"></app-pie-list>
       </div>
     </app-section>
-    <app-section theme="h1" title="实销预警汇总" order-number="03">
+    <app-section theme="h1" moduleTitle="实销预警汇总" order-number="03">
       <div class="real-sell">
         <table>
           <thead>
@@ -95,7 +93,7 @@
           <tbody>
             <tr>
               <td>
-                <span class="title">未报实销总数</span>
+                <span class="title">实销</span>
                 <i class="num bold">{{parts.realSell.realSellRepertoryRatyData.sell.real || 0}}</i>
                 <span class="up" *ngIf="1 < 0">
                   <img src="assets/images/logistic/icon-up.svg" alt="">
@@ -117,7 +115,7 @@
             </tr>
             <tr>
               <td>
-                <span class="title">报实销总数</span>
+                <span class="title">库存</span>
                 <i class="num bold">{{parts.realSell.realSellRepertoryRatyData.repertory.real || 0}}</i>
                 <span class="up" *ngIf="1 < 0">
                   <img src="assets/images/logistic/icon-up.svg" alt="">
@@ -141,7 +139,7 @@
         </table>
       </div>
     </app-section>
-    <app-section theme="h2" title="按{{ reportData?.typeLabel }}统计虚假实销和虚假库存">
+    <app-section theme="h2" moduleTitle="按{{ reportData?.typeLabel }}统计虚假实销和虚假库存">
       <div class="platform-sell">
         <div class="charts">
           <p class="legend">
@@ -150,7 +148,7 @@
           </p>
           <div *ngFor="let v of parts.realSell.platformRealSell">
             <div *ngIf="v" class="chart-item flex">
-              <h6 class="">{{v.name}}</h6>
+              <h6 [style.width]= "titleWidth">{{v.name}}</h6>
               <div class="lines">
                 <div class="line-blue" [style.width]="(v.saleRaty*100)+'%'">
                   <span>{{(v.saleRaty || 0) * 100 |  number:'1.0-1'}}%</span>

@@ -17,7 +17,7 @@ export class ProgressComponent implements OnInit {
    *     lift?: '0' | '1' | '2', // PS:传入字符串 上升-下降-不变[根据数据要求变化]
    * }]
    * layout: false; 进度条显示格式 default: false
-   * unit: ''; 进度条百分比单位: default: '%'; 'k'单位'k' | 'f'单位'分' | 'n' 无单位; P: [unit]="'k'"
+   * unit: ''; 进度条百分比单位: default: '%'; 'k'单位'k' | 'f'单位'分' | 'n' 无单位 | 'l'单位 '辆'; P: [unit]="'k'"
    * sort: false; 是否显示排序
    * sortLayout: false; 排序样式
    *
@@ -54,6 +54,7 @@ export class ProgressComponent implements OnInit {
   @Input() textColor?: string = 'blue';
   @Input() marginBottom?: number;
   @Input() special?: boolean = false;
+  @Input() showTop3?: boolean = true;
 
   data = [];
   liftClass: string[] = ['up', 'no', 'down'];
@@ -92,10 +93,18 @@ export class ProgressComponent implements OnInit {
     if (data) {
       let long = [];
       data.map(ele => {
-        long.push(ele.title.length);
+        long.push({titleName: ele.title, titleLen: ele.title.length});
       });
-      let maxLen = Math.max(...long);
-      return maxLen > 4 ? maxLen * 14 / 100 + 'rem' : '.61rem';
+
+      let sortArr = long.sort((a, b) => {
+        return b.titleLen - a.titleLen;
+      });
+      let maxLen = sortArr[0].titleLen;
+      if ( /^[\u4e00-\u9fa5]+$/.test(sortArr[0].titleName.trim())) {
+        return maxLen > 4 ? maxLen * 14 / 100 + 'rem' : '.61rem';
+      } else {
+        return maxLen > 4 ? maxLen * 13 / 100 + 'rem' : '.61rem';
+      }
     }
   }
 }

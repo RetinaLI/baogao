@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { IndexComponent } from './index.component';
 import { SharedModule } from 'src/app/providors/share.module';
-import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/HttpClient';
 
 describe('IndexComponent', () => {
   let component: IndexComponent;
@@ -11,7 +11,7 @@ describe('IndexComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ IndexComponent ],
-      imports: [SharedModule, HttpModule]
+      imports: [SharedModule, HttpClientModule]
     })
     .compileComponents();
   }));

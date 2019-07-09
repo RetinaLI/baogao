@@ -1,6 +1,6 @@
 export interface IAccountIfAddData{
   name: string,
-  numberVal: number | number[],
+  numberVal: any | any[],
   addValue?: string,
   sourceVal?: number | number[],
   [x:string]: any

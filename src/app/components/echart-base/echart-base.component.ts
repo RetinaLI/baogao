@@ -19,7 +19,8 @@ export class EchartBaseComponent implements OnInit, AfterViewInit {
 
   @Input("height") set _height(_h: string){
     this.height = _h;
-    this.$element.style.height = (this.height);
+    // this.$element.style.height = (this.height);
+    if(this.$element) this.$element.style.height = this.height;
     this.resizeChart();
   }
 

@@ -25,6 +25,8 @@ interface IViewFaultPercentByType {
 })
 export class QeComponent implements OnInit {
   reportData: IQeReportData;
+  isLeisa = false;
+  pieName = '故障占比';
   bannerInfo: ITopNavData = {
     className: 'qe',
     endDate: '',
@@ -55,6 +57,7 @@ export class QeComponent implements OnInit {
     numberVal: 0
   }];
   orderByFaultTypeData: IPieData[] = [];
+  orderByFaultTypeData1: IPieData[] = [];
   orderByFaultTypeList: {
     name: string,
     color: string,
@@ -113,8 +116,14 @@ export class QeComponent implements OnInit {
     this.bannerInfo.endDate = this.reportData.endDate;
     this.bannerInfo.startDate = this.reportData.startDate;
     this.bannerInfo.title = `质量大数据报告`;
+    this.bannerInfo.platform = this.reportData.platform || '福田车联网报告'
     this.bannerInfo.currentTime = dateFormate(this.reportData.reportDate.currentTime, 'yyyy.MM.dd HH:mm:ss'),
     this.pageTitle.setTitle(this.bannerInfo.title);
+    if (this.reportData.platform && this.reportData.platform.indexOf("雷萨") > -1) {
+      this.isLeisa = true;
+    } else {
+      this.isLeisa = false;
+    }
 
     this.summaryData = this.summaryData.map(dataElem => {
       return Object.assign(dataElem, {
@@ -122,24 +131,111 @@ export class QeComponent implements OnInit {
       });
     });
 
-    this.orderByFaultTypeData = this.sortDaultTypeJson(this.reportData.faultTypeJson);
-    this.orderByFaultTypeList = this.orderByFaultTypeData.map((item, i) => {
+    let arrFaultM =  this.sortDaultTypeJson(this.reportData.faultTypeJson);
+    this.orderByFaultTypeData = arrFaultM;
+
+    let arrFault = [];
+    arrFaultM.forEach((v) => {
+      if (Number(v.value)< 0.1) {
+        arrFault.push({'name': v.name, 'value': '<0.1'});
+      } else {
+        arrFault.push({'name': v.name, 'value': v.value});
+      }
+    });
+    this.orderByFaultTypeList = arrFault.map((item, i) => {
       return {...item, color: this.orderByFaultTypeChartColors[i]};
     });
 
-    this.faultByBrandList = this.reportData.faultLevelJson.reverse().map(item => {
-      let sum = item.data.reduce((pre, next) => {
-        return pre + next;
+    if (this.reportData.type ==="carBrand") {
+      this.faultByBrandList = this.reportData.faultLevelJson.reverse().map(item => {
+        let sum = item.data.reduce((pre, next) => {
+          return pre + next;
+        });
+        let highRate, middleRate, lowRate, arr, sumRate, remaining, objArr;
+        highRate = Number(this.formToFloor(item.data[0], sum));
+        middleRate = Number(this.formToFloor(item.data[1], sum));
+        lowRate = Number(this.formToFloor(item.data[2], sum));
+        arr = [highRate, middleRate, lowRate].sort((a, b) => {
+          return b -a;
+        });
+        sumRate = arr.reduce((pre, next) => {
+          return pre + next;
+        });
+        remaining = Math.round(Math.abs(1000-sumRate * 10)) /10;
+        objArr = [{id: 1, value: highRate}, {id: 2, value: middleRate}, {id: 3, value: lowRate}].sort((a, b) => { return b.value - a.value}).map((item, index) => {
+          if (index === 0) {
+            item.value = Math.round((item.value + remaining) * 10)/10;
+          }
+          return item;
+        });
+        objArr = objArr.sort((a,b) => {
+          return a.id - b.id;
+        });
+
+        return Object.assign(item, {
+          highSize: objArr[0].value,
+          middleSize: objArr[1].value,
+          lowSize: objArr[2].value,
+          highSizeColor: this.faultByBrandColors[0].color,
+          middleSizeColor: this.faultByBrandColors[1].color,
+          lowSizeColor: this.faultByBrandColors[2].color
+        });
       });
-      return Object.assign(item, {
-        highSize: Number(this.formToFixed(item.data[0], sum)),
-        middleSize: Number(this.formToFixed(item.data[1], sum)),
-        lowSize: Number(this.formToFixed(item.data[2], sum)),
-        highSizeColor: this.faultByBrandColors[0].color,
-        middleSizeColor: this.faultByBrandColors[1].color,
-        lowSizeColor: this.faultByBrandColors[2].color
-      });
-    });
+    } else if (this.reportData.type ==="carType") {
+      let list = this.reportData.faultLevelJson;
+      if (list && list[0].name.indexOf('其他')> -1) {
+        list = list.reverse();
+      };
+      if (list) {
+        list = list.filter((v) => {
+          if (this.reportData.platform.indexOf('时代') > -1) {
+            if (v.name !== '全部') {
+              return v;
+            }
+          } else {
+            if (v.name !== '全部') {
+              v.name = v.name.slice(0, v.name.indexOf('_'));
+              return v;
+            }
+          }
+        });
+        this.faultByBrandList = list.map(item => {
+          let sum = item.data.reduce((pre, next) => {
+            return pre + next;
+          });
+          let highRate, middleRate, lowRate, arr, sumRate, remaining, objArr;
+          highRate = Number(this.formToFloor(item.data[0], sum));
+          middleRate = Number(this.formToFloor(item.data[1], sum));
+          lowRate = Number(this.formToFloor(item.data[2], sum));
+          arr = [highRate, middleRate, lowRate].sort((a, b) => {
+            return b -a;
+          });
+          sumRate = arr.reduce((pre, next) => {
+            return pre + next;
+          });
+          remaining = Math.round(Math.abs(1000-sumRate * 10)) /10;
+
+          objArr = [{id: 1, value: highRate}, {id: 2, value: middleRate}, {id: 3, value: lowRate}].sort((a, b) => { return b.value - a.value}).map((item, index) => {
+            if (index === 0) {
+              item.value = Math.round((item.value + remaining) * 10)/10;
+            }
+            return item;
+          });
+          objArr = objArr.sort((a,b) => {
+            return a.id - b.id;
+          });
+
+          return Object.assign(item, {
+            highSize: objArr[0].value,
+            middleSize: objArr[1].value,
+            lowSize: objArr[2].value,
+            highSizeColor: this.faultByBrandColors[0].color,
+            middleSizeColor: this.faultByBrandColors[1].color,
+            lowSizeColor: this.faultByBrandColors[2].color
+          });
+        });
+      }
+    }
 
     this.faultCountList = this.reportData.faultRankJson.map(item => {
       return {
@@ -154,21 +250,32 @@ export class QeComponent implements OnInit {
       })
     });
 
-    this.faultTopOneByTypeList = this.reportData.faultRatioJson.reverse().map(item => {
-      let count = 0;
-      if (item.car_brand_name === '全部') {
-        count = item.max / this.reportData.faultProfileJson.faultcount * 1000;
-      } else {
-        count = item.max / item.total * 1000;
-      }
-      return {
-        title: item.car_brand_name,
-        progress: (Math.round(count) / 10).toFixed(1),
-        problem: item.name || item.description
-      };
-    });
-    this.bindFaultPercentByTypeList();
+    let faultRatioJsonList = this.reportData.faultRatioJson;
+    if (faultRatioJsonList) {
+      let lastOne = faultRatioJsonList.pop();
+      let newList = faultRatioJsonList.slice(0, faultRatioJsonList.length);
+      newList.unshift(lastOne);
 
+      this.faultTopOneByTypeList = newList.map(item => {
+        let count = 0;
+        if (item.car_brand_name === '全部') {
+          count = item.max / this.reportData.faultProfileJson.faultcount * 1000;
+        } else {
+          count = item.max / item.total * 1000;
+        }
+        if (this.reportData.platform.indexOf('时代') === -1 && this.reportData.type ==="carType") {
+          if (item.car_brand_name !== '全部') {
+            item.car_brand_name = item.car_brand_name.slice(0, item.car_brand_name.indexOf('_'));
+          }
+        }
+        return {
+          title: item.car_brand_name,
+          progress: (Math.round(count) / 10).toFixed(1),
+          problem: item.name || item.description
+        };
+      });
+      this.bindFaultPercentByTypeList();
+    }
   }
 
   async ngOnInit() {
@@ -193,17 +300,25 @@ export class QeComponent implements OnInit {
       }).sort((a, b) => {
         return b.source_count - a.source_count;
       }).map(ele => {
-        let count = this.formToFixed(ele.source_count, sum);
+        let count = this.formToFloor(ele.source_count, sum);
         ruds += Number(count) * 10;
         arr.push({
           name: ele.source_name,
           value: count
         });
       });
-
-      arr[0].value = (Number(arr[0].value) + (1000 - ruds) / 10).toFixed(1) + '';
+      let num = 0;
+      arr.forEach((item) => {
+        if (item.value === '0.0') {
+          num += 1;
+        }
+      });
+      arr[0].value = (Number(arr[0].value) + (1000 - ruds) / 10 - 0.1 * num).toFixed(1) + '';
       return arr;
     }
+  }
+  formToFloor(num, sum) {
+    return (Math.floor((num / sum) * 1000) / 10).toFixed(1);
   }
 
   formToFixed(num, sum) {
@@ -211,25 +326,66 @@ export class QeComponent implements OnInit {
   }
 
   bindFaultPercentByTypeList() {
-    let colors = ['#666666', '#4475FD', '#3DE3A3', '#FFBC53', '#F56C6C', '#FFD94F'];
-    let faultPercentByTypeList = this.reportData.faultRateJson.reverse();
-    faultPercentByTypeList = faultPercentByTypeList.map(ele => {
-      let oneCount = 0;
-      let percents = [];
-      if (ele.car_brand_name === '全部') {
-        oneCount = this.reportData.faultRateCountJson.map(ele => ele.num).reduce(function (preValue, curValue) {
-          return preValue + curValue;
+    let colors = ['#666666', '#4475FD', '#3DE3A3', '#25A0FF', '#F56C6C', '#FFD94F', '#9155bc', '#f09930', '#50459B', '#FFBC53', ' #22BFFF',  '#10D998'];
+    let faultPercentByTypeList = this.reportData.faultRateJson;
+    let faultAll = faultPercentByTypeList.pop();
+    faultPercentByTypeList = faultPercentByTypeList.slice(0, faultPercentByTypeList.length);
+    faultPercentByTypeList.unshift(faultAll);
+    if (this.reportData.type ==="carBrand") {
+      faultPercentByTypeList = faultPercentByTypeList.map(ele => {
+        let oneCount = 0;
+        let percents = [];
+        if (ele.car_brand_name === '全部') {
+          oneCount = this.reportData.faultRateCountJson.map(ele => ele.num).reduce(function (preValue, curValue) {
+            return preValue + curValue;
+          });
+        } else {
+          oneCount = this.reportData.faultRateCountJson.find(fele => fele.name === ele.car_brand_name).num;
+        }
+        if (oneCount) {
+          percents = ele.faultcars.map(item => parseFloat((Math.round(item / oneCount * 1000) / 10).toFixed(1)));
+        }
+        return Object.assign(ele, {
+          percents
         });
-      } else {
-        oneCount = this.reportData.faultRateCountJson.find(fele => fele.name === ele.car_brand_name).num;
-      }
-      if (oneCount) {
-        percents = ele.faultcars.map(item => parseFloat((Math.round(item / oneCount * 1000) / 10).toFixed(1)));
-      }
-      return Object.assign(ele, {
-        percents
       });
-    });
+    } else if (this.reportData.type === "carType") {
+
+      let totalNum = this.reportData.faultRateCountJson.map(ele => ele.num).reduce(function (pre, cur) {return pre + cur});
+
+      this.reportData.faultRateCountJson.push({name: "全部", num: totalNum});
+
+      faultPercentByTypeList = faultPercentByTypeList.map(ele => {
+        let oneCount
+        let percents = [];
+        let exist = this.reportData.faultRateCountJson.find(fele => fele.name === ele.car_brand_name);
+        if (exist) {
+          oneCount = exist.num;
+        }
+
+        if (oneCount) {
+          percents = ele.faultcars.map(item => parseFloat((Math.round(item / oneCount * 1000) / 10).toFixed(1)));
+        }
+        return Object.assign(ele, {
+          percents
+        });
+      });
+
+      faultPercentByTypeList = faultPercentByTypeList.slice(0, 10);
+    }
+
+    // 如果不是时代平台，截掉car_brand_name后面的品牌名（仅限于车厂端）
+    if (this.reportData.type === "carType") {
+      let isShidai = this.reportData.platform.indexOf('时代') > -1;
+      if (!isShidai) {
+        faultPercentByTypeList.forEach( (v) => {
+          if (v.car_brand_name !== '全部') {
+            v.car_brand_name = v.car_brand_name.slice(0, v.car_brand_name.indexOf('_'));
+            return v;
+          }
+        })
+      }
+    }
     let faultPercentByTypeOption = {
       color: colors,
       tooltip: {
@@ -257,7 +413,9 @@ export class QeComponent implements OnInit {
         itemWidth: 8
       },
       grid: {
-        top: 20
+        top: 20,
+        left: '15%',
+        bottom: '30%'
       },
       yAxis: [
         {
@@ -306,6 +464,7 @@ export class QeComponent implements OnInit {
       }],
       series: []
     };
+
     faultPercentByTypeOption.series = faultPercentByTypeList.map((item, i) => {
       return Object.assign({
         name: item.car_brand_name,
@@ -333,6 +492,7 @@ export class QeComponent implements OnInit {
       } : {});
     });
     this.faultPercentByTypeOption = faultPercentByTypeOption;
+
   }
 
   trackByOrderByFaultTypeList(index: number, data: IPieData): number {

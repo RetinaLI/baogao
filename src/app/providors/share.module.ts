@@ -22,6 +22,9 @@ import { SubPipe } from '../pipes/sub.pipe';
 import { BarComponent } from '../components/bar/bar.component';
 import { Level2TitleComponent } from '../components/level2-title/level2-title.component';
 import { EchartBaseComponent } from '../components/echart-base/echart-base.component';
+import { LineComponent } from '../components/line/line.component';
+
+import { CarReportComponent } from '../components/car-report/car-report.component';
 
 const IMPORT_LIST = [CommonModule, FormsModule];
 
@@ -45,7 +48,9 @@ const EXPORT_LIST = [
   SectionComponent,
   BarComponent,
   Level2TitleComponent,
-  EchartBaseComponent
+  EchartBaseComponent,
+  CarReportComponent,
+  LineComponent
 ];
 
 const DECLARATION_LIST = [
@@ -68,7 +73,9 @@ const DECLARATION_LIST = [
   SectionComponent,
   BarComponent,
   Level2TitleComponent,
-  EchartBaseComponent
+  EchartBaseComponent,
+  CarReportComponent,
+  LineComponent
 ];
 
 @NgModule({

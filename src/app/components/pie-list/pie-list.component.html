@@ -1,4 +1,4 @@
-<div class="pie-list clearfix">
+<div class="pie-list clearfix" [style.height]="boxHeight">
   <div class="chart fl" [attr.id]="name" (window:resize)="onWindowResize()"></div>
   <div class="list fl">
     <table>

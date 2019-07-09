@@ -1,10 +1,10 @@
 <div class="page-body clearfix">
   <app-top-nav theme="quality" [bannerInfo]="bannerInfo"></app-top-nav>
-  <app-section theme="h1" title="车联网采集的故障情况" order-number="01" >
+  <app-section theme="h1" moduleTitle="车联网采集的故障情况" order-number="01" >
     <app-account-if-add [data]="summaryData" [showNum]="false"></app-account-if-add>
   </app-section>
-  <app-section theme="h2" title="按电控模块故障占比">
-    <app-pie chart-title="故障占比" [pieData]="orderByFaultTypeData" [chartColor]="orderByFaultTypeChartColors" [label]="false" [nameData]="false" height="1.2rem" [chart-radius]="['65%', '85%']"></app-pie>
+  <app-section theme="h2" moduleTitle="按电控模块故障占比">
+    <app-pie id="faultRate" chartTitle="{{pieName}}" [pieData]="orderByFaultTypeData" [chartColor]="orderByFaultTypeChartColors" [label]="false" [nameData]="false" height="1.2rem" [chart-radius]="['65%', '85%']"></app-pie>
     <ul class="order-by-fault-type-list clearfix">
       <li *ngFor="let item of orderByFaultTypeList; trackBy: trackByOrderByFaultTypeList;">
         <i [style.background-color]="item.color"></i>
@@ -13,7 +13,7 @@
       </li>
     </ul>
   </app-section>
-  <app-section theme="h2" title="按{{ reportData?.typeLabel }}统计故障占比" *ngIf="reportData?.type === 'carBrand'">
+  <app-section theme="h2" moduleTitle="按{{ reportData?.typeLabel }}统计故障占比">
     <ul class="fault-percent-by-type-color-list">
       <li *ngFor="let item of faultByBrandColors; trackBy: trackByFaultByBrandColors">
         <i [style.background-color]="item.color"></i>
@@ -24,35 +24,35 @@
       <li *ngFor="let item of faultByBrandList; trackBy: trackByFaultByBrandList">
         <label>{{ item.name }}</label>
         <div>
-          <span [style.width]="item.highSize+'%'" [style.background-color]="item.highSizeColor"><i>{{item.highSize}}%</i></span>
-          <span [style.width]="item.middleSize+'%'" [style.background-color]="item.middleSizeColor"><i>{{item.middleSize}}%</i></span>
-          <span [style.width]="item.lowSize+'%'" [style.background-color]="item.lowSizeColor"><i>{{item.lowSize}}%</i></span>
+          <span *ngIf="item.highSize > 0" [style.width]="item.highSize+'%'" [style.background-color]="item.highSizeColor"><i>{{item.highSize}}%</i></span>
+          <span *ngIf="item.middleSize > 0" [style.width]="item.middleSize+'%'" [style.background-color]="item.middleSizeColor"><i>{{item.middleSize}}%</i></span>
+          <span *ngIf="item.lowSize > 0" [style.width]="item.lowSize+'%'" [style.background-color]="item.lowSizeColor"><i>{{item.lowSize}}%</i></span>
         </div>
       </li>
     </ul>
   </app-section>
-  <app-section theme="h2" title="按{{ reportData?.typeLabel }}统计故障率趋势" *ngIf="reportData?.type === 'carBrand'">
+  <app-section theme="h2" moduleTitle="按{{ reportData?.typeLabel }}统计故障率趋势">
     <div class="chart-wrapper fault-percent-by-type-chart">
       <app-echart-base [option]="faultPercentByTypeOption"></app-echart-base>
     </div>
   </app-section>
-  <app-section class="fault-count-list" theme="h1" title="按故障码统计情况" order-number="02">
+  <app-section class="fault-count-list" theme="h1" moduleTitle="按故障码统计情况" order-number="02">
     <app-level2-title name="车联网故障码上报TOP10"></app-level2-title>
     <app-sort-list [data]="faultCountList" [sort]="true" unit="c"></app-sort-list>
   </app-section>
-  <app-section theme="h2" title="按{{ reportData?.typeLabel }}统计比例最高的故障码" order-number="02"  *ngIf="reportData?.type === 'carBrand'">
+  <app-section theme="h2" moduleTitle="按{{ reportData?.typeLabel }}统计比例最高的故障码" order-number="02" >
     <app-progress [data]="faultTopOneByTypeList" [layout]="false" unit="%" [marginBottom]=".3"></app-progress>
   </app-section>
-  <app-section theme="h1" title="故障处理情况" order-number="03" class="fault-fix-wrapper">
+  <app-section theme="h1" moduleTitle="故障处理情况" *ngIf="!isLeisa" order-number="03" class="fault-fix-wrapper">
     <app-img-text-sheets [sheetsList]="faultFixList"></app-img-text-sheets>
     <div class="detail">
       车联网已向Seibel推送故障
       <span>{{reportData?.faultProfileJson.faultcount || 0}}个</span>，
       其中已经处理完成<span>{{reportData?.faultTreatJson.processed || 0}}个</span>，
-      占比<span>{{(reportData?.faultTreatJson.processed/reportData?.faultProfileJson.faultcount * 100) || 0 | number:'1.0-1'}}%</span>，
+      占比<span>{{(reportData?.faultTreatJson.processed/reportData?.faultProfileJson.faultcount * 100) || 0 | number:'1.0-2'}}%</span>，
       <!-- 已分发<span>{{reportData?.faultTreatJson.assigne}}个</span>，占比<span>{{(reportData?.faultTreatJson.assigne/reportData?.faultProfileJson.faultcount * 100) | number:'1.0-1'}}%</span>， -->
       待处理<span>{{reportData?.faultTreatJson.unprocessed || 0}}个</span>，
-      占比<span>{{(reportData?.faultTreatJson.unprocessed/reportData?.faultProfileJson.faultcount * 100) || 0 | number:'1.0-1'}}%</span>。</div>
+      占比<span>{{(reportData?.faultTreatJson.unprocessed/reportData?.faultProfileJson.faultcount * 100) || 0 | number:'1.0-2'}}%</span>。</div>
   </app-section>
   <app-logo-bottom></app-logo-bottom>
 </div>

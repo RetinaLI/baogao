@@ -10,14 +10,8 @@ function check_result(){
 port=$1;
 
 npm run build;
+npm run gulpfile;
 
-mv dist/report/*.js dist/report/*.css dist/report/*.png dist/report/assets/;
-mv dist/report/assets/itink.png dist/report/;
-cp dist/report/index.html dist/report/sell.html;
-cp dist/report/index.html dist/report/logistic.html;
-cp dist/report/index.html dist/report/serve.html;
-cp dist/report/index.html dist/report/product.html;
-cp dist/report/index.html dist/report/qe.html;
 
 if [[ "$port" != "104" ]]; then
   echo "提交到 platform-iov-web";

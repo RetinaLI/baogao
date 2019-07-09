@@ -1,562 +1,434 @@
 {
-	"faultRatioJson": [
-	{
-	"car_brand_name": "时代",
-	"code": "F000001108016",
-	"fmi": "16",
-	"description": "OverRun时加电时间超过最大值",
-	"source": "000",
-	"total": 3404,
-	"provider": "武汉品致",
-	"source_name": "ECM",
-	"max": 393,
-	"spn": "1108",
-	"name": "OverRun时加电时间高",
-	"supplierCompanyName": "EDC17",
-	"fc": "P0172"
-	},
-	{
-	"car_brand_name": "欧曼",
-	"code": "F000000597002",
-	"fmi": "2",
-	"description": "油门踏板和刹车踏板信号不合理故障",
-	"source": "000",
-	"total": 884526,
-	"provider": "售后服务",
-	"source_name": "ECM",
-	"max": 102830,
-	"suggest": "暂无",
-	"priority": "高",
-	"spn": "597",
-	"name": "油门踏板和刹车踏板信号不合理故障",
-	"supplierCompanyName": "北汽福田汽车股份有限公司北京福田发动机厂"
-	},
-	{
-	"car_brand_name": "欧马可",
-	"code": "F033002372018",
-	"fmi": "18",
-	"description": "主车制动灯故障欠载",
-	"source": "033",
-	"total": 36320,
-	"provider": "售后服务",
-	"source_name": "BCM",
-	"max": 5649,
-	"suggest": "请检查灯泡功率是否在符合规定的功率",
-	"priority": "中",
-	"spn": "2372",
-	"name": "主车制动灯或线路故障",
-	"supplierCompanyName": "江苏罗思韦尔电气有限公司"
-	},
-	{
-	"car_brand_name": "雷萨",
-	"code": "F000000597002",
-	"fmi": "2",
-	"description": "油门踏板和刹车踏板信号不合理故障",
-	"source": "000",
-	"total": 14786,
-	"provider": "售后服务",
-	"source_name": "ECM",
-	"max": 4462,
-	"suggest": "暂无",
-	"priority": "高",
-	"spn": "597",
-	"name": "油门踏板和刹车踏板信号不合理故障",
-	"supplierCompanyName": "北汽福田汽车股份有限公司北京福田发动机厂"
-	},
-	{
-	"car_brand_name": "全部",
-	"code": "F000000597002",
-	"fmi": "2",
-	"description": "油门踏板和刹车踏板信号不合理故障",
-	"source": "000",
-	"total": 0,
-	"provider": "售后服务",
-	"source_name": "ECM",
-	"max": 107327,
-	"suggest": "暂无",
-	"priority": "高",
-	"spn": "597",
-	"name": "油门踏板和刹车踏板信号不合理故障",
-	"supplierCompanyName": "北汽福田汽车股份有限公司北京福田发动机厂"
-	}
-	],
+	"faultRatioJson": [{
+		"car_brand_name": "时代",
+		"code": "F000001108016",
+		"fmi": "16",
+		"description": "OverRun时加电时间超过最大值",
+		"source": "000",
+		"total": 4157.0,
+		"provider": "售后服务",
+		"property": "发动机系统",
+		"source_name": "ECM",
+		"max": 400.0,
+		"suggest": "1、整车关掉电源大于30s，查看下一驾驶循环是否正常；\n2、更换ECU；",
+		"priority": "中",
+		"spn": "1108",
+		"name": "ECU故障",
+		"supplierCompanyName": "潍柴动力股份有限公司",
+		"fc": "P0172"
+	}, {
+		"car_brand_name": "欧曼",
+		"code": "F000000597002",
+		"fmi": "2",
+		"description": "刹车状态信息不稳定",
+		"source": "000",
+		"total": 874505.0,
+		"provider": "售后服务",
+		"property": "发动机系统",
+		"source_name": "ECM",
+		"max": 96534.0,
+		"priority": "中",
+		"spn": "597",
+		"name": "刹车状态信息不稳定",
+		"supplierCompanyName": "戴姆勒股份公司"
+	}, {
+		"car_brand_name": "欧马可",
+		"code": "F033002372018",
+		"fmi": "18",
+		"description": "主车制动灯故障欠载",
+		"source": "033",
+		"total": 33642.0,
+		"provider": "售后服务",
+		"property": "车身控制器系统",
+		"source_name": "BCM",
+		"max": 5076.0,
+		"suggest": "请检查灯泡功率是否在符合规定的功率",
+		"priority": "中",
+		"spn": "2372",
+		"name": "主车制动灯或线路故障",
+		"supplierCompanyName": "江苏罗思韦尔电气有限公司"
+	}, {
+		"car_brand_name": "雷萨",
+		"code": "F000000597002",
+		"fmi": "2",
+		"description": "刹车状态信息不稳定",
+		"source": "000",
+		"total": 13435.0,
+		"provider": "售后服务",
+		"property": "发动机系统",
+		"source_name": "ECM",
+		"max": 4295.0,
+		"priority": "中",
+		"spn": "597",
+		"name": "刹车状态信息不稳定",
+		"supplierCompanyName": "戴姆勒股份公司"
+	}, {
+		"car_brand_name": "全部",
+		"code": "F000000597002",
+		"fmi": "2",
+		"description": "刹车状态信息不稳定",
+		"source": "000",
+		"total": 0,
+		"provider": "售后服务",
+		"property": "发动机系统",
+		"source_name": "ECM",
+		"max": 100849.0,
+		"priority": "中",
+		"spn": "597",
+		"name": "刹车状态信息不稳定",
+		"supplierCompanyName": "戴姆勒股份公司"
+	}],
 	"faultTreatJson": {
-	"totalpushed": 613,
-	"unprocessed": 612,
-	"assigne": 0,
-	"processed": 1
+		"totalpushed": 590,
+		"unprocessed": 590,
+		"assigne": 0,
+		"processed": 0
 	},
-	"faultRateJson": [
-	{
-	"times": [
-	"2018-11-12",
-	"2018-11-13",
-	"2018-11-14",
-	"2018-11-15",
-	"2018-11-16",
-	"2018-11-17",
-	"2018-11-18"
-	],
-	"car_brand_name": "时代",
-	"faultcars": [
-	371,
-	412,
-	383,
-	373,
-	359,
-	360,
-	297
-	]
-	},
-	{
-	"times": [
-	"2018-11-13",
-	"2018-11-14",
-	"2018-11-15",
-	"2018-11-16",
-	"2018-11-17",
-	"2018-11-18",
-	"2018-11-12"
-	],
-	"car_brand_name": "欧曼",
-	"faultcars": [
-	55224,
-	54952,
-	55199,
-	57000,
-	56876,
-	55936,
-	55140
-	]
-	},
-	{
-	"times": [
-	"2018-11-13",
-	"2018-11-14",
-	"2018-11-15",
-	"2018-11-16",
-	"2018-11-17",
-	"2018-11-18",
-	"2018-11-12"
-	],
-	"car_brand_name": "欧马可",
-	"faultcars": [
-	3464,
-	3482,
-	3483,
-	3504,
-	3198,
-	2818,
-	3399
-	]
-	},
-	{
-	"times": [
-	"2018-11-13",
-	"2018-11-14",
-	"2018-11-15",
-	"2018-11-16",
-	"2018-11-17",
-	"2018-11-18",
-	"2018-11-12"
-	],
-	"car_brand_name": "雷萨",
-	"faultcars": [
-	1358,
-	1298,
-	1294,
-	1326,
-	1322,
-	1241,
-	1293
-	]
-	},
-	{
-	"times": [
-	"2018-11-12",
-	"2018-11-13",
-	"2018-11-14",
-	"2018-11-15",
-	"2018-11-16",
-	"2018-11-17",
-	"2018-11-18"
-	],
-	"car_brand_name": "全部",
-	"faultcars": [
-	62816,
-	63014,
-	62686,
-	62866,
-	64793,
-	64267,
-	62475
-	]
-	}
-	],
+	"faultRateJson": [{
+		"times": ["2018-11-05", "2018-11-06", "2018-11-07", "2018-11-08", "2018-11-09", "2018-11-10", "2018-11-11"],
+		"car_brand_name": "时代",
+		"faultcars": [400.0, 377.0, 382.0, 391.0, 440.0, 402.0, 387.0]
+	}, {
+		"times": ["2018-11-06", "2018-11-07", "2018-11-08", "2018-11-09", "2018-11-10", "2018-11-11", "2018-11-05"],
+		"car_brand_name": "欧曼",
+		"faultcars": [53890.0, 54239.0, 53096.0, 54904.0, 55799.0, 54962.0, 55934.0]
+	}, {
+		"times": ["2018-11-06", "2018-11-07", "2018-11-08", "2018-11-09", "2018-11-10", "2018-11-11", "2018-11-05"],
+		"car_brand_name": "欧马可",
+		"faultcars": [3020.0, 3235.0, 3221.0, 3319.0, 3195.0, 2811.0, 3022.0]
+	}, {
+		"times": ["2018-11-06", "2018-11-07", "2018-11-08", "2018-11-09", "2018-11-10", "2018-11-11", "2018-11-05"],
+		"car_brand_name": "雷萨",
+		"faultcars": [1217.0, 1211.0, 1196.0, 1283.0, 1272.0, 1257.0, 1240.0]
+	}, {
+		"times": ["2018-11-05", "2018-11-06", "2018-11-07", "2018-11-08", "2018-11-09", "2018-11-10", "2018-11-11"],
+		"car_brand_name": "全部",
+		"faultcars": [63074.0, 60950.0, 61531.0, 60351.0, 62535.0, 63123.0, 61634.0]
+	}],
 	"reportDate": {
-	"currentTime": 1544486245153,
-	"endDate": "2018-11-18",
-	"startDate": "2018-11-12"
+		"currentTime": 1548847004433,
+		"endDate": "2018-11-11",
+		"startDate": "2018-11-05"
 	},
-	"faultLevelJson": [
-	{
-	"name": "时代",
-	"data": [
-	4203,
-	1611,
-	319
-	]
-	},
-	{
-	"name": "欧曼",
-	"data": [
-	2035388,
-	439668,
-	472067
-	]
-	},
-	{
-	"name": "欧马可",
-	"data": [
-	78606,
-	38061,
-	16297
-	]
-	},
-	{
-	"name": "雷萨",
-	"data": [
-	15344,
-	11893,
-	2074
-	]
-	},
-	{
-	"name": "全部",
-	"data": [
-	2203685,
-	512930,
-	506938
-	]
-	}
-	],
-	"faultRankJson": [
-	{
-	"codecount": 107327,
-	"code": "F000000597002",
-	"source": "000",
-	"source_name": "ECM",
-	"name": "油门踏板和刹车踏板信号不合理故障",
-	"description": "油门踏板和刹车踏板信号不合理故障",
-	"spn": "597",
-	"fmi": "2",
-	"priority": "高",
-	"provider": "售后服务",
-	"suggest": "暂无",
-	"supplierCompanyName": "北汽福田汽车股份有限公司北京福田发动机厂"
-	},
-	{
-	"codecount": 47315,
-	"code": "F000000598002",
-	"source": "000",
-	"source_name": "ECM",
-	"name": "离合器信号不可信",
-	"description": "离合器信号不可信（档位变化了，但离合器信号没有相应变化）",
-	"spn": "598",
-	"fmi": "2",
-	"fc": "P003F",
-	"provider": "武汉品致",
-	"supplierCompanyName": "EDC17"
-	},
-	{
-	"codecount": 26377,
-	"code": "F000000097015",
-	"source": "000",
-	"source_name": "ECM",
-	"name": "燃油含水指示灯–数据有效但高于正常工作范围–最低严重级别 ",
-	"spn": "97",
-	"fmi": "15",
-	"priority": "中",
-	"provider": "售后服务",
-	"suggest": "检查燃油滤清器是否含水",
-	"supplierCompanyName": "北京福田康明斯发动机有限公司"
-	},
-	{
-	"codecount": 21169,
-	"code": "F000001746009",
-	"source": "000",
-	"source_name": "ECM",
-	"description": "安全装置 - 异常更新率",
-	"property": "OEM",
-	"spn": "1746",
-	"fmi": "9",
-	"fc": "4138",
-	"priority": "尽快维修",
-	"provider": "康明斯中国",
-	"suggest": "方便时尽早与康明斯认证的维修点联系安排维修服务，在维修前车辆可以继续使用",
-	"supplierCompanyName": "康明斯",
-	"instructionToOperator": "司机指导：需要立即处理，将车停到安全的地方（严重降扭发生在车速为0后，根据实际情况车可以多开一会），点火钥匙关闭，保持大电停留60s，再打开点火钥匙，一次或几次操作，故障消失即可，不用进一步处理。故障仍激活，请联系服务。注意：车有锁车功能时，认为拆除锁车模块会造成此故障，从而诱发车被锁（严重降扭）。",
-	"instructionToFleetMgr": "方便时尽早与康明斯认证的维修点联系安排维修服务，在维修前车辆可以继续使用"
-	},
-	{
-	"codecount": 20408,
-	"code": "F011000792007",
-	"source": "011",
-	"source_name": "ABS",
-	"name": "驱动桥右轮轮速传感器 机械系统无响应或者失调 ",
-	"spn": "792",
-	"fmi": "7",
-	"priority": "低",
-	"provider": "售后服务",
-	"suggest": "检查传感器与齿圈的间隙是不是太大，如果太大，使传感器后部完全受力推向齿圈侧；\n测量传感器与线缆的电阻，电阻正常区间为900-2000 欧姆（接插件-管脚：X1-10 和X1-11）；\n检查制动的机械部件（制动拖拽、雍塞）\n验证步骤：\n清除诊断故障码。通过EOL 工具或者开动车辆来验证轮速传感器信号；\n传感器的诊断故障码会一直存在（未操作清除诊断故障码）除非：\nABS 电控单元上电后，车速大于15-20km/h，ABS 能接收到所有轮速传感器发出的正常数\n据",
-	"supplierCompanyName": "东科克诺尔商用车制动系统（十堰）有限公司"
-	},
-	{
-	"codecount": 20036,
-	"code": "F011000792005",
-	"source": "011",
-	"source_name": "ABS",
-	"name": "驱动桥右轮轮速传感器 电流低于正常值或者开路 ",
-	"spn": "792",
-	"fmi": "5",
-	"priority": "低",
-	"provider": "售后服务",
-	"suggest": "传感器与齿圈之间的间隙太大；\n传感器的输出交流电压，在0.5revs/sec 时感应电压最小值应为0.25V。（接插件-管脚：X1-10\n和X1-11）。如果电压太小，使传感器后部完全受力推向齿圈侧；\n核实适当的轴承轴向间隙；\n检查传感器头状态；\n检查电控单元与传感器之间的接插件和线束有无损坏或者腐蚀；\n验证步骤：\n清除诊断故障码。通过EOL 工具或者开动车辆来验证轮速传感器信号；\n传感器的诊断故障码会一直存在（未操作清除诊断故障码）除非：\nABS 电控单元上电后，车速大于15-20km/h，ABS 能接收到所有轮速传感器发出的正常数\n据",
-	"supplierCompanyName": "东科克诺尔商用车制动系统（十堰）有限公司"
-	},
-	{
-	"codecount": 18899,
-	"code": "F011000791007",
-	"source": "011",
-	"source_name": "ABS",
-	"name": "驱动桥左轮轮速传感器 机械系统无响应或者失调 ",
-	"description": "驱动桥左轮轮速传感器 机械系统无响应或者失调 ",
-	"spn": "791",
-	"fmi": "7",
-	"priority": "低",
-	"provider": "售后服务",
-	"suggest": "检查传感器与齿圈的间隙是不是太大，如果太大，使传感器后部完全受力推向齿圈侧；\n测量传感器与线缆的电阻，电阻正常区间为900-2000 欧姆（接插件-管脚：X2-15 和X2-18）；\n检查制动的机械部件（制动拖拽、雍塞）\n验证步骤：\n清除诊断故障码。通过EOL 工具或者开动车辆来验证轮速传感器信号；\n传感器的诊断故障码会一直存在（未操作清除诊断故障码）除非：\nABS 电控单元上电后，车速大于15-20km/h，ABS 能接收到所有轮速传感器发出的正常数\n据",
-	"supplierCompanyName": "东科克诺尔商用车制动系统（十堰）有限公司"
-	},
-	{
-	"codecount": 17518,
-	"code": "F011000792010",
-	"source": "011",
-	"source_name": "ABS",
-	"name": "驱动桥右轮轮速传感器 不正常的变化率 ",
-	"spn": "792",
-	"fmi": "10",
-	"priority": "低",
-	"provider": "售后服务",
-	"suggest": "检查轮胎型号是否与车辆要求装配的一致；\n检查C3 信号校准，检查车速表是否有额外的故障码；检查所有齿圈上的齿数；\n验证步骤：\n清除诊断故障码。通过EOL 工具或者开动车辆来验证轮速传感器信号；\n传感器的诊断故障码会一直存在（未操作清除诊断故障码）除非：\nABS 电控单元上电后，车速大于15-20km/h，ABS 能接收到所有轮速传感器发出的正常数\n据",
-	"supplierCompanyName": "东科克诺尔商用车制动系统（十堰）有限公司"
-	},
-	{
-	"codecount": 16636,
-	"code": "F011000797005",
-	"source": "011",
-	"source_name": "ABS",
-	"name": "驱动桥左轮压力控制阀 电流低于正常值或者开路 ",
-	"spn": "797",
-	"fmi": "5",
-	"priority": "中",
-	"provider": "售后服务",
-	"suggest": "检查压力控制阀的线束及接插件\n证步骤：\n清除诊断故障码。",
-	"supplierCompanyName": "东科克诺尔商用车制动系统（十堰）有限公司"
-	},
-	{
-	"codecount": 16082,
-	"code": "F011000791010",
-	"source": "011",
-	"source_name": "ABS",
-	"name": "ABS&ESC/P故障",
-	"spn": "791",
-	"fmi": "10",
-	"priority": "高",
-	"provider": "售后服务",
-	"suggest": "调整传感器间隙，检查传感器线束，防止断接，转动车轮，检测传感器的输出信号，是否满足WABCO的要求",
-	"supplierCompanyName": "威伯科汽车控制系统(中国)有限公司,东科克诺尔商用车制动系统（十堰）有限公司"
-	}
-	],
-	"faultTypeJson": [
-	{
-	"source": "003",
-	"source_count": 10268,
-	"source_name": "AMT"
-	},
-	{
-	"source": "011",
-	"source_count": 2502544,
-	"source_name": "ABS"
-	},
-	{
-	"source": "000",
-	"source_count": 2732553,
-	"source_name": "ECM"
-	},
-	{
-	"source": "016",
-	"source_count": 440,
-	"source_name": "RET"
-	},
-	{
-	"source": "047",
-	"source_count": 840,
-	"source_name": "ECAS"
-	},
-	{
-	"source": "236",
-	"source_count": 4620,
-	"source_name": "DCM"
-	},
-	{
-	"source": "051",
-	"source_count": 674,
-	"source_name": "TPMS"
-	},
-	{
-	"source": "033",
-	"source_count": 22652,
-	"source_name": "BCM"
-	}
-	],
-	"faultRateCountJson": [
-	{
-	"name": "萨普",
-	"code": "A05",
-	"num": 1,
-	"mileage": 109500,
-	"work_time": 33459,
-	"location_points": 614,
-	"can_points": 1122,
-	"charge_power": 0,
-	"charge_count": 0,
-	"uncharge_count": 0
-	},
-	{
-	"name": "普罗科",
-	"code": "A27",
-	"num": 1,
-	"mileage": 541100,
-	"work_time": 159756,
-	"location_points": 5933,
-	"can_points": 5933,
-	"charge_power": 0,
-	"charge_count": 0,
-	"uncharge_count": 0
-	},
-	{
-	"name": "风景",
-	"code": "A07",
-	"num": 192,
-	"mileage": 16253000,
-	"work_time": 2195460,
-	"location_points": 1229453,
-	"can_points": 1233120,
-	"charge_power": 0,
-	"charge_count": 0,
-	"uncharge_count": 0
-	},
-	{
-	"name": "工程车",
-	"code": "A12",
-	"num": 4221,
-	"mileage": 2838367000,
-	"work_time": 1180239798,
-	"location_points": 29759017,
-	"can_points": 0
-	},
-	{
-	"name": "瑞沃",
-	"code": "A26",
-	"num": 5655,
-	"mileage": 5392085000,
-	"work_time": 1007690883,
-	"location_points": 33479811,
-	"can_points": 72530548,
-	"charge_power": 0,
-	"charge_count": 0,
-	"uncharge_count": 0
-	},
-	{
-	"name": "时代",
-	"code": "A08",
-	"num": 6368,
-	"mileage": 4643344790,
-	"work_time": 687805488,
-	"location_points": 27691751,
-	"can_points": 94369554,
-	"charge_power": 0,
-	"charge_count": 0,
-	"uncharge_count": 0
-	},
-	{
-	"name": "雷萨",
-	"code": "A16",
-	"num": 7644,
-	"mileage": 4749644664,
-	"work_time": 1560288395,
-	"location_points": 80758925,
-	"can_points": 154150582,
-	"charge_power": 0,
-	"charge_count": 0,
-	"uncharge_count": 0
-	},
-	{
-	"name": "欧辉",
-	"code": "A14",
-	"num": 11103,
-	"mileage": 9955843149,
-	"work_time": 1266424115,
-	"location_points": 184639185,
-	"can_points": 229020644,
-	"charge_power": 22432.67,
-	"charge_count": 717,
-	"uncharge_count": 725
-	},
-	{
-	"name": "奥铃",
-	"code": "A01",
-	"num": 19708,
-	"mileage": 21166975605,
-	"work_time": 2176217371,
-	"location_points": 150308908,
-	"can_points": 397668539,
-	"charge_power": 0,
-	"charge_count": 0,
-	"uncharge_count": 0
-	},
-	{
-	"name": "欧马可",
-	"code": "A02",
-	"num": 24774,
-	"mileage": 30173096821,
-	"work_time": 3273703823,
-	"location_points": 199696587,
-	"can_points": 556650814,
-	"charge_power": 0,
-	"charge_count": 0,
-	"uncharge_count": 0
-	},
-	{
-	"name": "欧曼",
-	"code": "A09",
-	"num": 251492,
-	"mileage": 468891394162,
-	"work_time": 62541515257,
-	"location_points": 2181400342,
-	"can_points": 6137981651,
-	"charge_power": 0,
-	"charge_count": 0,
-	"uncharge_count": 0
-	}
-	],
+	"faultLevelJson": [{
+		"name": "时代",
+		"data": [3240, 7082, 1300]
+	}, {
+		"name": "欧曼",
+		"data": [827141, 1323223, 447748]
+	}, {
+		"name": "欧马可",
+		"data": [27585, 41439, 9754]
+	}, {
+		"name": "雷萨",
+		"data": [9265, 38109, 9456]
+	}, {
+		"name": "全部",
+		"data": [892890, 1436327, 478507]
+	}],
+	"faultRankJson": [{
+		"codecount": 100849,
+		"code": "F000000597002",
+		"source": "000",
+		"source_name": "ECM",
+		"name": "刹车状态信息不稳定",
+		"description": "刹车状态信息不稳定",
+		"property": "发动机系统",
+		"spn": "597",
+		"fmi": "2",
+		"priority": "中",
+		"provider": "售后服务",
+		"supplierCompanyName": "戴姆勒股份公司"
+	}, {
+		"codecount": 44642,
+		"code": "F000000598002",
+		"source": "000",
+		"source_name": "ECM",
+		"name": "离合开关状态不稳定",
+		"description": "离合开关状态不稳定",
+		"property": "发动机系统",
+		"spn": "598",
+		"fmi": "2",
+		"priority": "中",
+		"provider": "售后服务",
+		"supplierCompanyName": "戴姆勒股份公司"
+	}, {
+		"codecount": 29936,
+		"code": "F000000097015",
+		"source": "000",
+		"source_name": "ECM",
+		"name": "油中含水故障",
+		"description": "燃油中含水",
+		"property": "燃油系统",
+		"spn": "97",
+		"fmi": "15",
+		"fc": "418",
+		"priority": "中",
+		"provider": "售后服务",
+		"suggest": "检查燃油滤清器是否含水",
+		"supplierCompanyName": "东康动力科技（北京）有限公司"
+	}, {
+		"codecount": 20585,
+		"code": "F000001746009",
+		"source": "000",
+		"source_name": "ECM",
+		"name": "安全设备",
+		"description": "安全设备-更新率异常",
+		"property": "发动机系统",
+		"spn": "1746",
+		"fmi": "9",
+		"fc": "4138",
+		"priority": "中",
+		"provider": "售后服务",
+		"suggest": "1.检查防盗设备配置是否正确\n2.检查维修用数据通信接口线束\n3.检查 OEM 线束",
+		"supplierCompanyName": "北京福田康明斯发动机有限公司",
+		"instructionToOperator": "需要立即处理，将车停到安全的地方（严重降扭发生在车速为0后，根据实际情况车可以多开一会），点火钥匙关闭，保持大电停留60s，再打开点火钥匙，一次或几次操作，故障消失即可，不用进一步处理。故障仍激活，请联系服务。注意：车有锁车功能时，认为拆除锁车模块会造成此故障，从而诱发车被锁（严重降扭）。"
+	}, {
+		"codecount": 19615,
+		"code": "F011000792007",
+		"source": "011",
+		"source_name": "ABS",
+		"name": "ABS故障",
+		"description": "驱动桥右轮轮速传感器 机械系统无响应或者失调 ",
+		"property": "制动系统",
+		"spn": "792",
+		"fmi": "7",
+		"priority": "低",
+		"provider": "售后服务",
+		"suggest": "检查传感器与齿圈的间隙是不是太大，如果太大，使传感器后部完全受力推向齿圈侧；\n测量传感器与线缆的电阻，电阻正常区间为900-2000 欧姆（接插件-管脚：X1-10 和X1-11）；\n检查制动的机械部件（制动拖拽、雍塞）\n验证步骤：\n清除诊断故障码。通过EOL 工具或者开动车辆来验证轮速传感器信号；\n传感器的诊断故障码会一直存在（未操作清除诊断故障码）除非：\nABS 电控单元上电后，车速大于15-20km/h，ABS 能接收到所有轮速传感器发出的正常数\n据",
+		"supplierCompanyName": "东科克诺尔商用车制动系统（十堰）有限公司"
+	}, {
+		"codecount": 19340,
+		"code": "F011000792005",
+		"source": "011",
+		"source_name": "ABS",
+		"name": "ABS&ESC/P故障",
+		"description": "传感器开路或中断(后右)ABS轮速失效，ASR/ESC/RSC失效",
+		"property": "制动系统",
+		"spn": "792",
+		"fmi": "5",
+		"priority": "高",
+		"provider": "售后服务",
+		"suggest": "检查传感器接线，如有必要，更换传感器",
+		"supplierCompanyName": "武汉元丰汽车电控系统有限公司"
+	}, {
+		"codecount": 18727,
+		"code": "F011000791007",
+		"source": "011",
+		"source_name": "ABS",
+		"name": "ABS&ESC/P故障",
+		"description": "左后传感器不正确的齿圈当轮速高于10km/h时，检查到车轮信号丢失",
+		"property": "制动系统",
+		"spn": "791",
+		"fmi": "7",
+		"priority": "高",
+		"provider": "售后服务",
+		"suggest": "检查齿圈是否损坏或者丢齿，采用WABCO的齿圈检测仪，如果同时出现间隙过大的错误，那么调节传感器和齿圈的间隙",
+		"supplierCompanyName": "威伯科汽车控制系统(中国)有限公司"
+	}, {
+		"codecount": 17278,
+		"code": "F011000792010",
+		"source": "011",
+		"source_name": "ABS",
+		"name": "ABS故障",
+		"description": "驱动桥右轮轮速传感器 不正常的变化率 ",
+		"property": "制动系统",
+		"spn": "792",
+		"fmi": "10",
+		"priority": "低",
+		"provider": "售后服务",
+		"suggest": "检查轮胎型号是否与车辆要求装配的一致；\n检查C3 信号校准，检查车速表是否有额外的故障码；检查所有齿圈上的齿数；\n验证步骤：\n清除诊断故障码。通过EOL 工具或者开动车辆来验证轮速传感器信号；\n传感器的诊断故障码会一直存在（未操作清除诊断故障码）除非：\nABS 电控单元上电后，车速大于15-20km/h，ABS 能接收到所有轮速传感器发出的正常数\n据",
+		"supplierCompanyName": "东科克诺尔商用车制动系统（十堰）有限公司"
+	}, {
+		"codecount": 16375,
+		"code": "F011000797005",
+		"source": "011",
+		"source_name": "ABS",
+		"name": "ABS故障",
+		"description": "驱动桥左轮压力控制阀 电流低于正常值或者开路 ",
+		"property": "制动系统",
+		"spn": "797",
+		"fmi": "5",
+		"priority": "中",
+		"provider": "售后服务",
+		"suggest": "检查压力控制阀的线束及接插件\n证步骤：\n清除诊断故障码。",
+		"supplierCompanyName": "东科克诺尔商用车制动系统（十堰）有限公司"
+	}, {
+		"codecount": 16283,
+		"code": "F011000791010",
+		"source": "011",
+		"source_name": "ABS",
+		"name": "ABS&ESC/P故障",
+		"description": "左后传感器速度中断短暂丢失传感器的速度信号，传感器间隙过大，传感器的电压超过临界值",
+		"property": "制动系统",
+		"spn": "791",
+		"fmi": "10",
+		"priority": "高",
+		"provider": "售后服务",
+		"suggest": "调整传感器间隙，检查传感器线束，防止断接，转动车轮，检测传感器的输出信号，是否满足WABCO的要求",
+		"supplierCompanyName": "威伯科汽车控制系统(中国)有限公司"
+	}],
+	"faultTypeJson": [{
+		"source": "003",
+		"source_count": 8012,
+		"source_name": "AMT"
+	}, {
+		"source": "011",
+		"source_count": 723324,
+		"source_name": "ABS"
+	}, {
+		"source": "243",
+		"source_count": 18
+	}, {
+		"source": "000",
+		"source_count": 2049721,
+		"source_name": "ECM"
+	}, {
+		"source": "016",
+		"source_count": 220,
+		"source_name": "RET"
+	}, {
+		"source": "047",
+		"source_count": 1327,
+		"source_name": "ECAS"
+	}, {
+		"source": "236",
+		"source_count": 8824,
+		"source_name": "DCM"
+	}, {
+		"source": "208",
+		"source_count": 4
+	}, {
+		"source": "033",
+		"source_count": 16296,
+		"source_name": "BCM"
+	}],
+	"faultRateCountJson": [{
+		"name": "萨普",
+		"code": "A05",
+		"num": 1,
+		"mileage": 194800,
+		"work_time": 33133,
+		"location_points": 761,
+		"can_points": 1409,
+		"charge_power": 0.0,
+		"charge_count": 0,
+		"uncharge_count": 0
+	}, {
+		"name": "普罗科",
+		"code": "A27",
+		"num": 1,
+		"mileage": 603600,
+		"work_time": 166407,
+		"location_points": 6419,
+		"can_points": 6419,
+		"charge_power": 0.0,
+		"charge_count": 0,
+		"uncharge_count": 0
+	}, {
+		"name": "风景",
+		"code": "A07",
+		"num": 245,
+		"mileage": 65204000,
+		"work_time": 5560866,
+		"location_points": 3809630,
+		"can_points": 3819837,
+		"charge_power": 0.0,
+		"charge_count": 0,
+		"uncharge_count": 0
+	}, {
+		"name": "工程车",
+		"code": "A12",
+		"num": 4290,
+		"mileage": 2649223000,
+		"work_time": 1176946130,
+		"location_points": 28751255,
+		"can_points": 0
+	}, {
+		"name": "瑞沃",
+		"code": "A26",
+		"num": 5736,
+		"mileage": 5031528220,
+		"work_time": 971320724,
+		"location_points": 31543638,
+		"can_points": 66018736,
+		"charge_power": 0.0,
+		"charge_count": 0,
+		"uncharge_count": 0
+	}, {
+		"name": "时代",
+		"code": "A08",
+		"num": 6553,
+		"mileage": 4367752745,
+		"work_time": 659879108,
+		"location_points": 26580864,
+		"can_points": 88530657,
+		"charge_power": 0.0,
+		"charge_count": 0,
+		"uncharge_count": 0
+	}, {
+		"name": "雷萨",
+		"code": "A16",
+		"num": 8046,
+		"mileage": 4855480526,
+		"work_time": 1602451549,
+		"location_points": 86014815,
+		"can_points": 162294636,
+		"charge_power": 0.0,
+		"charge_count": 0,
+		"uncharge_count": 0
+	}, {
+		"name": "欧辉",
+		"code": "A14",
+		"num": 10524,
+		"mileage": 9756529814,
+		"work_time": 1223370266,
+		"location_points": 177094702,
+		"can_points": 219578026,
+		"charge_power": 6631.38,
+		"charge_count": 204,
+		"uncharge_count": 226
+	}, {
+		"name": "奥铃",
+		"code": "A01",
+		"num": 20315,
+		"mileage": 20935065865,
+		"work_time": 2161513696,
+		"location_points": 148503155,
+		"can_points": 388335082,
+		"charge_power": 0.0,
+		"charge_count": 0,
+		"uncharge_count": 0
+	}, {
+		"name": "欧马可",
+		"code": "A02",
+		"num": 25427,
+		"mileage": 28941193267,
+		"work_time": 3128348116,
+		"location_points": 190408827,
+		"can_points": 525421918,
+		"charge_power": 0.0,
+		"charge_count": 0,
+		"uncharge_count": 0
+	}, {
+		"name": "欧曼",
+		"code": "A09",
+		"num": 256024,
+		"mileage": 463745609197,
+		"work_time": 62569737639,
+		"location_points": 2142849503,
+		"can_points": 6014588423,
+		"charge_power": 0.0,
+		"charge_count": 0,
+		"uncharge_count": 0
+	}],
 	"type": "carBrand",
+	"platform": "福田汽车车联网平台",
 	"faultProfileJson": {
-	"runmileagecount": 549577331.438,
-	"faultpercar": 2.8766130331,
-	"faultcount": 964350,
-	"faultpermileage": 1.7547121,
-	"carcount": 127939
+		"runmileagecount": 5.40609103179E8,
+		"faultpercar": 2.8671440513,
+		"faultcount": 950140.0,
+		"faultpermileage": 1.7575360999999998,
+		"carcount": 126647.0
 	}
 }

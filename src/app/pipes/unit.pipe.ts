@@ -13,6 +13,8 @@ export class UnitPipe implements PipeTransform {
         return parseFloat(value) + 'k';
       case 'f':
         return parseFloat(value) + '分';
+      case 'l':
+        return parseFloat(value) + '辆';
       case 'n':
         return parseFloat(value);
       default:

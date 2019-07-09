@@ -1,13 +1,23 @@
 import { Injectable } from '@angular/core';
 import { AjaxService } from './ajax.service';
-import { ILogisticReportData, ISellReportData, IServeReportData, IQeReportData, IProductData, ReportTimeRangeType, IReportData } from './data.interface';
+import { ILogisticReportData,
+  ISellReportData,
+  IServeReportData,
+  IQeReportData,
+  IProductData,
+  ReportTimeRangeType,
+  IReportData,
+  IUserBehaviorData,
+  ITerminalData,
+  IoldReportData} from './data.interface';
 
-export type TReportData = IReportData | ILogisticReportData | ISellReportData | IServeReportData | IQeReportData | IProductData;
+export type TReportData = IReportData | ITerminalData | IUserBehaviorData | ILogisticReportData | ISellReportData | IServeReportData | IQeReportData | IProductData;
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
+  dataObj: IoldReportData;
   reportData: TReportData;
 
   private apiUrl: string = '';
@@ -70,5 +80,17 @@ export class DataService {
   async getChinaJson() {
     let result = await this.ajaxService.get('assets/json/china.json', null);
     this.chinaJson = result;
+  }
+
+  async getOldReportData(params?: any) {
+    if (!this.apiUrl || this.dataObj) return;
+    let result = await this.ajaxService.get(this.apiUrl, params);
+
+    if (!result || result.success === false) {
+      return;
+    }
+
+    this.dataObj = result as IoldReportData;
+
   }
 }

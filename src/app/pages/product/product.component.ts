@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 
 import {DataService} from '../../services/data.service';
 import {ITopNavData} from '../../components/top-nav/top-nav.interface';
-import {IProductData, IQeReportData} from '../../services/data.interface';
+import {IProductData} from '../../services/data.interface';
 import {IAccountIfAddData} from '../../components/account-if-add/account-if-add.interface';
 import {IProgressInterface} from '../../components/progress/progress.interface';
 import {ISortInterface} from '../../components/sort/sort.interface';
@@ -24,10 +24,12 @@ export class ProductComponent implements OnInit {
     currentTime: ''
   };
   accountIfAdd: IAccountIfAddData[] = [{
+    sourceVal: [0, 0],
     numberVal: [0, 0],
     name: '',
     addValue: ''
   }, {
+    sourceVal: [0, 0],
     numberVal: [0, 0],
     name: '',
     addValue: ''
@@ -64,7 +66,7 @@ export class ProductComponent implements OnInit {
     result: 0
   };
 
-  constructor(private dataService: DataService, private pageTitle: Title) {
+  constructor(public dataService: DataService, private pageTitle: Title) {
     this.pageTitle.setTitle(this.bannerInfo.title);
   }
 
@@ -72,8 +74,10 @@ export class ProductComponent implements OnInit {
     await this.dataService.getReportData();
     this.reportData = this.dataService.reportData as IProductData;
     if (!this.reportData) return;
+    this.bindData();
+  }
+  bindData () {
     let dateFormate = FOTON_GLOBAL.Date.getDateByFormat;
-
     let {
       title,
       platform,
@@ -94,7 +98,7 @@ export class ProductComponent implements OnInit {
     platform = '福田车联网平台';
     this.bannerInfo = {title, platform, startDate, endDate};
     this.bannerInfo.currentTime = dateFormate(currentTime, 'yyyy.MM.dd HH:mm:ss'),
-    this.pageTitle.setTitle(title);
+      this.pageTitle.setTitle(title);
     let titleList = [
       {
         title: '产品总数(个)',
@@ -119,7 +123,7 @@ export class ProductComponent implements OnInit {
     this.detailCom = this.getDetailIndex(this.accountIfAdd[1], true);
     this.sortList = productRankingWeek.list.sort((a, b) => {
       return b.companyNum - a.companyNum;
-    }).splice(0, 10).map(ele => {
+    }).slice(0, 10).map(ele => {
       return {
         title: ele.productName,
         progress: ele.companyNum + ''
@@ -127,7 +131,7 @@ export class ProductComponent implements OnInit {
     });
     this.visitList = visitStatisticsProduct.productVisitList.sort((a, b) => {
       return b.count - a.count;
-    }).splice(0, 10).map(ele => {
+    }).slice(0, 10).map(ele => {
       return {
         title: ele.name,
         lift: this.lifts[Number(ele.compared) + 1],
@@ -136,7 +140,7 @@ export class ProductComponent implements OnInit {
     });
     this.sortTopList = visitStatisticsFactory.companyVisitList.sort((a, b) => {
       return b.count - a.count;
-    }).splice(0, 3).map(ele => {
+    }).slice(0, 3).map(ele => {
       return {
         title: ele.name,
         progress: ele.count + '',
@@ -145,7 +149,7 @@ export class ProductComponent implements OnInit {
     });
     this.listSort = visitStatisticsDealer.companyVisitList.sort((a, b) => {
       return b.count - a.count;
-    }).splice(0, 5).map(ele => {
+    }).slice(0, 5).map(ele => {
       return {
         title: ele.name,
         progress: ele.count + '',
@@ -157,10 +161,10 @@ export class ProductComponent implements OnInit {
     let functionsUsedByDealerData = this.getPark(functionsUsedByDealer);
     this.parkList = functionsUsedByFactoryData.lists;
     this.parkScale = functionsUsedByFactoryData.scales;
-    // console.log(this.parkScale);
-    // console.log(this.parkList);
+
     this.dealerList = functionsUsedByDealerData.lists;
     this.dealerScale = functionsUsedByDealerData.scales;
+
     // 渲染折线图
     let visitChartData = [
       {
@@ -174,6 +178,7 @@ export class ProductComponent implements OnInit {
     ];
     this.bindChartList(visitChartData, days);
     this.chartSum = this.getChartSum(visitChartData, Object.keys(visitStatisticsWeek.lastWeekVisit));
+    console.log(this.chartSum);
     // 百分比
     let visitNum = parseFloat((Math.round(visitStatisticsFactory.lastCompanyVisitTotal / visitStatisticsFactory.lastCompanyTotal * 1000) / 10).toFixed(1));
     // let dealerNum = parseInt(().toFixed(1));
@@ -186,9 +191,8 @@ export class ProductComponent implements OnInit {
     }, {
       name: '车厂端未使用率',
       value: 100 - visitNum,
-      num:visitStatisticsFactory.lastCompanyTotal - visitStatisticsFactory.lastCompanyVisitTotal
+      num: visitStatisticsFactory.lastCompanyTotal - visitStatisticsFactory.lastCompanyVisitTotal
     }];
-
     this.dealerPieData = [{
       name: '经销商端使用率',
       value: dealerNum,
@@ -198,8 +202,7 @@ export class ProductComponent implements OnInit {
       value: 100 - dealerNum,
       num: visitStatisticsDealer.lastCompanyTotal - visitStatisticsDealer.lastCompanyVisitTotal
     }];
-  }
-
+  };
   getPark(dataName) {
     let sumPark = dataName.functionsUsedList.map(item => item.count).reduce(function (preValue, curValue) {
       return preValue + curValue;
@@ -208,7 +211,7 @@ export class ProductComponent implements OnInit {
     // 饼图5个
     let fivePark = dataName.functionsUsedList.sort((a, b) => {
       return b.count - a.count;
-    }).splice(0, 10).map(ele => {
+    }).slice(0, 10).map(ele => {
       fiveParkList.push({
         title: ele.name,
         progress: ele.count,
@@ -216,7 +219,8 @@ export class ProductComponent implements OnInit {
       });
       return {
         name: ele.name,
-        value: parseFloat((ele.count / sumPark * 100).toFixed(1)),
+        value: ele.count
+        // value: parseFloat((ele.count / sumPark * 100).toFixed(1)),
       };
     });
 
@@ -226,7 +230,7 @@ export class ProductComponent implements OnInit {
     let scales = fivePark.slice(0,5).concat([
       {
         name: '其他',
-        value: 100 - fivePark.map(item => item.value).reduce(function (preValue, curValue) {
+        value: sumPark - fivePark.map(item => item.value).reduce(function (preValue, curValue) {
           return preValue + curValue;
         })
       }
@@ -255,8 +259,12 @@ export class ProductComponent implements OnInit {
     let maxNum = Math.max(...data[0].percents);
     let maxIndex = data[0].percents.indexOf(maxNum);
     let dates = startDate[maxIndex].split('-');
+    let creaOrDecrea = '增长';
+    creaOrDecrea = per > 0 ? '增长' : per == 0 ? '持平' : '下降';
+    per = Math.abs(per);
     return {
       sum,
+      creaOrDecrea,
       per,
       maxNum,
       week: week[maxIndex],
@@ -410,7 +418,6 @@ export class ProductComponent implements OnInit {
         },
       } : {});
     });
-    // console.info(faultPercentByTypeOption);
     this.visitOption = faultPercentByTypeOption;
   }
 }

@@ -17,11 +17,10 @@ export class BarComponent implements OnInit {
   @Input() colorBar?: string = '#4475FD';
   @Input('legendData') set _legendData(_legendData: string[]) {
     this.legendData = _legendData;
-    this.renderOption();
-    this.renderChart();
+    // this.renderOption();
+    // this.renderChart();
   }
   private data: IBarData[] = [];
-  private chart = null;
   private legendData: string[] = ['及时起运','未及时起运'];
 
   private barChartOption = {
@@ -121,7 +120,7 @@ export class BarComponent implements OnInit {
       }
     ]
   };
-
+  private chart = null;
   constructor() { }
 
   renderOption() {
@@ -144,7 +143,7 @@ export class BarComponent implements OnInit {
   }
 
   renderChart() {
-    if(!this.chart) return;
+    if (!this.chart) return;
     this.chart.setOption(this.barChartOption);
   }
 

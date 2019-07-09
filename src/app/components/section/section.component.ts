@@ -7,7 +7,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class SectionComponent implements OnInit {
   @Input() theme: 'h1' | 'h2' | 'h3' = 'h1'; //
-  @Input() title: string = '';
+  @Input() moduleTitle: string = '';
   @Input('order-number') orderNumber: string = ''; // 01 02等等
   @Input() origin: string = '';
   constructor() { }

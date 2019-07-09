@@ -1,13 +1,13 @@
 import { TestBed, inject } from '@angular/core/testing';
 
 import { AjaxService } from './ajax.service';
-import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/HttpClient';
 
 describe('AjaxService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [AjaxService],
-      imports: [HttpModule]
+      imports: [HttpClientModule]
     });
   });
 

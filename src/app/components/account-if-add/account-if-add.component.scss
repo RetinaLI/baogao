@@ -21,6 +21,9 @@
   div.items5:nth-child(4),div.items5:nth-child(5){
     width: 50%;
   }
+  div.items4{
+    width: 50%;
+  }
   .title {
     margin-bottom: .06rem;
     color: #666;
@@ -32,6 +35,21 @@
     font-size: .32rem;
     font-weight: bold;
     line-height: .37rem;
+    &.size32{
+      font-size: .32rem;
+    }
+    &.size28{
+      font-size: .28rem;
+    }
+    &.addRate{
+      color: #E67E7A;
+    }
+    &.minusRate{
+      color: #62C897;
+    }
+    &.noneRate{
+      color: #4475FD;
+    }
   }
   .marker{
     .add, .minus{
@@ -54,4 +72,7 @@
       background: #d5d5d5;
     }
   }
+}
+.sizeClass28{
+  font-size: .28rem;
 }

@@ -25,7 +25,12 @@ export class PieComponent implements OnInit {
     this.renderChart();
   }
 
-  @Input("chart-title") chartTitle: string;
+  // @Input("chart-title") chartTitle: any;
+  @Input("chartTitle") set chartTitle ( _chartTitle: any) {
+    this.option.title.text = _chartTitle;
+    this.option.series[0].name = _chartTitle;
+    this.renderChart();
+  }
   @Input() chartColor: string[];
   @Input() label?: boolean;
   @Input() nameData?: boolean;
@@ -45,13 +50,15 @@ export class PieComponent implements OnInit {
     if(this.$element) this.$element.style.height = _h;
     this.resizeChart();
   }
+  public percent: string[] = [];
+  // @output()
   private pieData: IPieData[] = [];
   private height: string = '2.2rem';
   id: string;
   private $element:HTMLElement;
   private chart: any;
   // private chartRadius = ['40%', '55%'];
-  private option = {
+  public option = {
     title : {
       text: '',
       x: 'center',
@@ -66,7 +73,7 @@ export class PieComponent implements OnInit {
       // formatter: "{a} <br/>{b}: {c} ({d}%)"
       // formatter: "{b}: {d}%"
       formatter: function (params) {
-        return params.name+':'+Math.round(params.percent*10)/10+'%';
+        return params.name + ": " + params.value;
       }
     },
     legend: {
@@ -88,10 +95,15 @@ export class PieComponent implements OnInit {
         type:'pie',
         radius: ['40%', '55%'],
         avoidLabelOverlap: true,
+        minAngle: 5,
         label: {
           normal: {
             show: false,
             formatter: '{d}%',
+            // formatter: function(v) {
+            //     // this.percent.push(v.percent);
+            //   return v.percent + '%';
+            // },
             // formatter: '{b|{b}}\n{hr|}{per|{d}%}',
             position: 'outside',
             textStyle: {
@@ -141,8 +153,8 @@ export class PieComponent implements OnInit {
     this.option.title.textStyle.color = this.titleColor;
     this.option.title.textStyle.fontSize = this.titleFontSize;
 
-    this.option.title.text = this.chartTitle;
-    this.option.series[0].name = this.chartTitle;
+    // this.option.title.text = this.chartTitle;
+    // this.option.series[0].name = this.chartTitle;
     this.option.color = this.chartColor;
     this.option.series[0].label.normal.show = this.label;
     this.option.series[0].label.emphasis.show = this.label;
@@ -161,10 +173,17 @@ export class PieComponent implements OnInit {
     if(this.richData === true) {
       this.option.series[0].label.normal.show = true;
       this.option.series[0].labelLine.normal.show = true;
-      this.option.series[0].label.normal.formatter = '{b|{b}}\n{hr|}{per|{d}%}';
+      // this.option.series[0].label.normal.formatter = '{b|{b}}\n{hr|}{per|{d}%}';
       this.option.series[0].radius = ['45%', '65%'];
     }
-
+    if (this.option.title.text ==='故障占比') {
+      this.option.tooltip.formatter = function (params) {
+        if(Number(params.value) < 0.1) {
+          return params.name + ':' + '不足0.1%';
+        }
+        return params.name + ':' + Math.round(params.value*10)/10+'%'
+      }
+    }
   }
 
   ngOnInit() {
@@ -175,6 +194,7 @@ export class PieComponent implements OnInit {
     if(this.height) this.$element.style.height = this.height;
     this.renderOption();
     this.chart = echarts.init(this.$element);
+
     this.renderChart();
   }
 

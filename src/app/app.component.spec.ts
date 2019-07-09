@@ -2,7 +2,7 @@ import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { APP_BASE_HREF } from '@angular/common';
-import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/HttpClient';
 import { BrowserModule } from '@angular/platform-browser';
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -10,7 +10,7 @@ describe('AppComponent', () => {
       declarations: [
         AppComponent
       ],
-      imports: [AppRoutingModule, HttpModule, BrowserModule],
+      imports: [AppRoutingModule, HttpClientModule, BrowserModule],
       providers: [
         {provide: APP_BASE_HREF, useValue: '/'}
       ]

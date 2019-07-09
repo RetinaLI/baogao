@@ -1,4 +1,8 @@
 .img-text-sheets ul {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  flex-wrap: wrap;
   li:nth-child(2n+1):nth-last-child(-n+2),
   li:nth-child(2n+1):nth-last-child(-n+2)~li {
     margin-bottom: 0;
@@ -7,6 +11,7 @@
     float: left;
     width: 50%;
     margin-bottom: .4rem;
+    text-align: center;
     img {
       margin-right: .16rem;
       width: .32rem;
@@ -14,6 +19,8 @@
     }
     .sheet-right {
       display: inline-block;
+      width: 1rem;
+      text-align: left;
       .title {
         color: #666;
         font-size: .12rem;

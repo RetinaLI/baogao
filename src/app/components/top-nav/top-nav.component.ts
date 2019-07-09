@@ -8,7 +8,8 @@ let imgUrls = [
   require('../../../assets/images/product/product-ban.png'),
   require('../../../assets/images/serve/banner-serve.png'),
   require('../../../assets/images/logistic/banner.png'),
-  require('../../../assets/images/quality/qe-banner.png')
+  require('../../../assets/images/quality/qe-banner.png'),
+  require('../../../assets/images/terminal/terminal-banner.png')
 ];
 
 @Component({
@@ -37,6 +38,12 @@ export class TopNavComponent implements OnInit {
     },
     quality: {
       imgUrl: imgUrls[4]
+    },
+    user: {
+      imgUrl: imgUrls[1]
+    },
+    terminal: {
+      imgUrl: imgUrls[5]
     }
   }
 

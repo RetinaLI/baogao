@@ -65,7 +65,10 @@
 .serve .date{
   background: linear-gradient(to right,#FF864F, #F4641B);
 }
-.quality .date,.product .date {
+.user .date,.product .date, .quality .date {
+  background: linear-gradient(to right,#17D1B3, #30BFAF);
+}
+.terminal .date{
   background: linear-gradient(to right,#17D1B3, #30BFAF);
 }
 

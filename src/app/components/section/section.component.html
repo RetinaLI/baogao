@@ -1,16 +1,16 @@
 <div class="section clearfix">
-  <div class="section-title" *ngIf="title">
+  <div class="section-title" *ngIf="moduleTitle">
     <div class="theme-h1" *ngIf="theme==='h1'">
       <img class="l" src="assets/images/part-title-left.png" alt="">
       <span class="num">{{orderNumber}}</span>
-      <span class="name">{{title}}</span>
+      <span class="name">{{moduleTitle}}</span>
       <img class="r" src="assets/images/part-title-right.png" alt="">
     </div>
     <div class="theme-h2" *ngIf="theme==='h2'">
-      <h3>{{title}}</h3>
+      <h3>{{moduleTitle}}</h3>
       <p class="line"></p>
     </div>
-    <app-level2-title [name]="title" *ngIf="theme==='h3'"></app-level2-title>
+    <app-level2-title [name]="moduleTitle" *ngIf="theme==='h3'"></app-level2-title>
   </div>
   <div *ngIf="origin" class="origin">数据来源：{{origin}}</div>
   <div class="section-content">

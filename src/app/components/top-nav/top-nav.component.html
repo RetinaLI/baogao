@@ -5,8 +5,8 @@
   </div>
   <div class="time">报告生成时间:&nbsp;{{bannerInfo?.currentTime}}</div>
   <div class="txt vc">
-    <h4 class="platform">{{bannerInfo?.platform}}</h4>
-    <h3 class="title" [class.service]="theme === 'service'">{{bannerInfo?.title}}</h3>
-    <p class="date">{{bannerInfo?.startDate + '-' + bannerInfo?.endDate}}</p>
+    <h4 class="platform" *ngIf="bannerInfo?.platform">{{bannerInfo?.platform}}</h4>
+    <h3 class="title" [class.service]="theme === 'service'" *ngIf="bannerInfo?.title">{{bannerInfo?.title}}</h3>
+    <p class="date" *ngIf="bannerInfo?.startDate && bannerInfo?.endDate">{{bannerInfo?.startDate + '-' + bannerInfo?.endDate}}</p>
   </div>
 </div>

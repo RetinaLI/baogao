@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers, URLSearchParams, Response } from '@angular/http';
+import { HttpClient, Headers, URLSearchParams, Response } from '@angular/HttpClient';
 import { Observable } from 'rxjs';
 
 export interface IResponseData {
@@ -13,7 +13,7 @@ export interface IResponseData {
 })
 export class AjaxService {
 
-  constructor(private http: Http) {
+  constructor(private http: HttpClient) {
 
   }
 

@@ -16,6 +16,23 @@
   }
 }
 
+.table {
+  th:first-child{
+    // text-indent: .15rem;
+    color: #333;
+  }
+  th{
+    height: .4rem;
+    font-size: .12rem;
+    color: #666;
+    text-align: center;
+  }
+  td:first-child{
+    text-indent: 0;
+    text-align: center;
+  }
+}
+
 .active-serve {
   .active-info {
     margin: .26rem 0 .4rem;

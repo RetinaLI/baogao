@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { QeComponent } from './qe.component';
 import { SharedModule } from 'src/app/providors/share.module';
-import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/HttpClient';
 import { By } from '@angular/platform-browser';
 import { IQeReportData } from 'src/app/services/data.interface';
 import { formatNumber } from '@angular/common';
@@ -14,7 +14,7 @@ describe('质量大数据报告', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [QeComponent],
-      imports: [SharedModule, HttpModule]
+      imports: [SharedModule, HttpClientModule]
     })
       .compileComponents();
   }));

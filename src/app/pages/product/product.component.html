@@ -1,32 +1,32 @@
 <div class="page-body">
   <app-top-nav theme="product" [bannerInfo]="bannerInfo"></app-top-nav>
   <div class="product-section">
-    <app-section theme="h1" title="车联网平台概况" order-number="01">
+    <app-section theme="h1" moduleTitle="车联网平台概况" order-number="01">
       <app-account-if-add [data]="accountIfAdd" [showNum]="true"></app-account-if-add>
       <div class="detail">
         产品总数为<span class="bold">{{accountIfAdd[0].numberVal[0]}}个</span>，环比<span class="bold">{{detail.text}}</span>，开通企业总数为<span class="bold">{{accountIfAdd[1].numberVal[0]}}个</span>，环比{{detailCom.text}}<span class="bold">{{detailCom.result}}个</span>
       </div>
     </app-section>
-    <app-section theme="h2" title="开通企业排行TOP10">
-      <app-progress [sortLayout]="true" [sort]="true" [layout]="true" [data]="sortList" unit="n" [special]="true"></app-progress>
+    <app-section theme="h2" moduleTitle="开通企业排行TOP10">
+      <app-progress class="sort-list" [sortLayout]="true" [sort]="true" [layout]="true" [data]="sortList" unit="n" [special]="true"></app-progress>
     </app-section>
-    <app-section theme="h1" title="用户访问统计" order-number="02">
+    <app-section theme="h1" moduleTitle="用户访问统计" order-number="02">
       <div class="chart-wrapper">
         <app-echart-base [option]="visitOption"></app-echart-base>
       </div>
-      <div class="detail">
-        访问量总计<span class="bold">{{chartSum.sum}}次</span>，环比增长<span class="bold">{{chartSum.per | number: '1.0-1'}}%</span>，峰值出现在{{chartSum.week}}{{chartSum.date}}，单日访问量达到<span class="bold">{{chartSum.maxNum}}次</span>
+      <div class="detail chart-detail">
+        访问量总计<span class="bold">{{chartSum.sum}}次</span>，环比<span>{{chartSum.creaOrDecrea}}</span><span class="bold">{{ chartSum.per | number: '1.0-1'}}%</span>，峰值出现在{{chartSum.week}}{{chartSum.date}}，单日访问量达到<span class="bold">{{chartSum.maxNum}}次</span>
       </div>
     </app-section>
-    <app-section theme="h2" title="按产品统计用户访问排行TOP10">
-      <app-progress [sort]="true" [layout]="true" [bgColor]="'yellow'" [data]="visitList" unit="c" [special]="true"></app-progress>
+    <app-section theme="h2" moduleTitle="按产品统计用户访问排行TOP10">
+      <app-progress class="visit-list" [sort]="true" [layout]="true" [bgColor]="'yellow'" [data]="visitList" unit="c" [special]="true"></app-progress>
     </app-section>
-    <app-section theme="h2" title="按企业统计用户访问情况">
+    <app-section theme="h2" moduleTitle="按企业统计用户访问情况">
       <div class="flex com-use" *ngIf="comPieData">
         <div class="com-chart">
-          <app-pie id="comPie" [chart-radius]= "['29', '40']" [chart-title]="comPieData[0].value + '%'" [pieData]="comPieData" [chartColor]="comPieColor" height="1.2rem" titleFontSize="12" titleColor="#4475FD"></app-pie>
+          <app-pie id="comPie" [chart-radius]= "['29', '40']" [chartTitle]="comPieData[0].value + '%'" [pieData]="comPieData" [chartColor]="comPieColor" height="1.2rem" titleFontSize="12" titleColor="#4475FD"></app-pie>
         </div>
-        <div class="com-use-title">
+        <div class="com-use-title com-use-title-com">
           <p class="com-use-title-t">{{comPieData[0].name}}</p>
           <p class="font12 com-use-title-n">使用企业数量：{{comPieData[0].num}}</p>
           <p class="font12 com-use-title-n no">未使用企业数量：{{comPieData[1].num}}</p>
@@ -36,28 +36,28 @@
       <app-sort [data]="sortTopList"></app-sort>
       <div class="flex com-use com-use-yellow" *ngIf="dealerPieData">
         <div class="com-chart">
-          <app-pie id="dealerPie" [chart-radius]= "['29', '40']" [chart-title]="dealerPieData[0].value + '%'" [pieData]="dealerPieData" [chartColor]="dealerPieColor" height="1.2rem" titleFontSize="12" titleColor="#FFBC53"></app-pie>
+          <app-pie id="dealerPie" [chart-radius]= "['29', '40']" [chartTitle]="dealerPieData[0].value + '%'" [pieData]="dealerPieData" [chartColor]="dealerPieColor" height="1.2rem" titleFontSize="12" titleColor="#FFBC53"></app-pie>
         </div>
-        <div class="com-use-title">
+        <div class="com-use-title com-use-title-de">
           <p class="com-use-title-t">{{dealerPieData[0].name}}</p>
           <p class="font12 com-use-title-n yellow">使用企业数量：{{dealerPieData[0].num}}</p>
           <p class="font12 com-use-title-n no">未使用企业数量：{{dealerPieData[1].num}}</p>
         </div>
       </div>
       <app-level2-title name="经销商端用户访问排名TOP5"></app-level2-title>
-      <app-sort-list [data]="listSort" [sort]="true" unit="n"></app-sort-list>
+      <app-sort-list class="list-sort" [data]="listSort" [sort]="true" unit="n"></app-sort-list>
     </app-section>
-    <app-section theme="h1" title="按产品功能统计用户访问量" order-number="03">
+    <app-section theme="h1" moduleTitle="按产品功能统计用户访问量" order-number="03">
       <app-level2-title name="车厂端常用功能"></app-level2-title>
-      <app-pie id="park" chart-title="车厂端" [pieData]="parkScale" [chartColor]="dealerColor" [label]="true" [richData]="true"></app-pie>
+      <app-pie id="park" chartTitle="车厂端" [pieData]="parkScale" [chartColor]="dealerColor" [label]="true" [richData]="true"></app-pie>
       <app-level2-title name="车厂端常用功能用户访问统计TOP10"></app-level2-title>
-      <app-sort-list [data]="parkList" [sort]="true" unit="c"></app-sort-list>
+      <app-sort-list class="park-list" [data]="parkList" [sort]="true" unit="c"></app-sort-list>
     </app-section>
     <app-section>
       <app-level2-title name="经销商端常用功能"></app-level2-title>
-      <app-pie id="dealer" chart-title="经销商端" [pieData]="dealerScale" [chartColor]="dealerColor" [label]="true" [richData]="true"></app-pie>
+      <app-pie id="dealer" chartTitle="经销商端" [pieData]="dealerScale" [chartColor]="dealerColor" [label]="true" [richData]="true"></app-pie>
       <app-level2-title name="经销商端常用功能用户访问统计TOP10"></app-level2-title>
-      <app-sort-list [data]="dealerList" [sort]="true" unit="c"></app-sort-list>
+      <app-sort-list class="dealer-list" [data]="dealerList" [sort]="true" unit="c"></app-sort-list>
     </app-section>
     <app-logo-bottom></app-logo-bottom>
   </div>

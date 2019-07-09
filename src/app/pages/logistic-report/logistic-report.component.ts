@@ -61,20 +61,19 @@ export class LogisticReportComponent implements OnInit {
     endRateAdd: 0
   }
 
-  constructor(private dataService: DataService, private pageTitle: Title) {
+  constructor(public dataService: DataService, private pageTitle: Title) {
     this.pageTitle.setTitle(this.bannerInfo.title);
   }
 
   async ngOnInit() {
     await this.dataService.getReportData();
-    let dateFormate = FOTON_GLOBAL.Date.getDateByFormat;
     this.reportData = this.dataService.reportData as ILogisticReportData;
-
     if(!this.reportData) return;
-    // let {
-    //   currentTime
-    // } = this.reportData as ILogisticReportData;
+    this.bindData();
+  }
 
+  bindData() {
+    let dateFormate = FOTON_GLOBAL.Date.getDateByFormat;
     // 运输质量评价
     let qe = this.reportData.transportationQualityEvaluation;
     // 品牌
@@ -212,36 +211,42 @@ export class LogisticReportComponent implements OnInit {
     for ( let k in transResource) {
       let frame = {
         name: '',
-        numberVal: []
+        numberVal: [],
+        valueKey: ''
       }
       if (k == 'companyBranchNum') {
         frame.name = "分公司(家)";
         frame.numberVal = transResource[k];
+        frame.valueKey = 'companyBranchNum';
         arr[0] = frame;
       } else if (k == 'logDepartmentNum') {
         frame.name = "物流部(个)";
         frame.numberVal = transResource[k];
+        frame.valueKey = 'logDepartmentNum';
         arr[1] = frame;
       } else if (k == 'councilsNum') {
         frame.name = "承运商(家)";
         frame.numberVal = transResource[k];
+        frame.valueKey = 'councilsNum';
         arr[2] = frame;
       } else if (k == 'driverNum') {
         frame.name = "司机(名)";
         frame.numberVal = transResource[k];
+        frame.valueKey = 'driverNum';
         arr[3] = frame;
       } else if (k == 'transportRouteNum') {
         frame.name = "运输路线(条)";
         frame.numberVal = transResource[k];
+        frame.valueKey = 'transportRouteNum';
         arr[4] = frame;
       } else if (k == 'placepointNum') {
         frame.name = "位置标点(个)";
         frame.numberVal = transResource[k];
+        frame.valueKey = 'placepointNum';
         arr[5] = frame;
       }
     };
     this.accountIfAddData = arr;
-    console.log(this.accountIfAddData);
     this.accountIfAddData.forEach( (val) => {
       let newAdd = val.numberVal[1];
       let arr = [];
@@ -328,7 +333,6 @@ export class LogisticReportComponent implements OnInit {
       this.endRateM = 0;
       this.addData.endRateAdd = 0;
     }
-
     // 异常运输
     let ab = this.reportData.abnormalTransportation;
     /* todo 用reportData.days代替 */
@@ -347,7 +351,6 @@ export class LogisticReportComponent implements OnInit {
       arr1.push(placeHolder);
     })
     this.delayBeginCountData = arr1;
-    console.info(this.delayBeginCountData);
     this.noStartShip3Data = ab.delayBeginCouncilsRank.slice(0,5).map( (val) => {
       let placeHolder = {title: '', progress: '', note: 0, errNote: 0 };
       placeHolder.title = val.councilsName;
